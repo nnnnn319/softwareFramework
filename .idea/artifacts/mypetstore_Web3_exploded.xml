@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="mypetstore:Web3 exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/mypetstore_Web3_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="mypetstore/web/Web3" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="javaee-facet-classes" facet="mypetstore/web/Web3" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.7" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.11" />
+          <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Tomcat/apache-tomcat-8.5.45/lib/servlet-api.jar" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.0.1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

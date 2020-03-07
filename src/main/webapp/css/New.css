@@ -1,0 +1,60 @@
+
+.login_span{
+    font-size: 20px;
+}
+legend{
+    background-color: #000000;
+    border:1px solid #000000;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-style: italic;
+    color: #54c07a;
+}
+
+fieldset{
+    position: relative;
+    left: 350px;
+    width: 450px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 20px ;
+    text-align: left;
+}
+#form_sign{
+    position: relative;
+    top: -20px;
+}
+#submit_i{
+    position: relative;
+    top: 10px;
+    left: 200px;
+}
+#canvas{
+    position: relative;
+    left: 10px;
+}
+.input{
+    border-top:   none;
+    border-left:  none;
+    border-right: none;
+}
+#identify_p{
+    position: relative;
+    top: 10px;
+}
+
+.input:focus{
+   outline: none;
+}
+.yes{
+    color: green;
+}
+.no{
+    color: red;
+}
+#newAcc{
+    color: red;
+}

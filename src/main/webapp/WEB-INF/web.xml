@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>mainServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.mainServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ViewCategoryServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ViewCategoryServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ViewProductServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ViewProductServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ViewItemServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ViewItemServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.SearchProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCartServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ViewCartServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RemoveItemFromCartServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.RemoveItemFromCartServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.UpdateCartServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SignOnServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.SignOnServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ViewSignOnMainServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ViewSignOnMainServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ViewAccountServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ViewAccountServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>EditAccountServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.EditAccountServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RegisterOkServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.RegisterOkServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GotoRegisterServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.GotoRegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SignOutServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.SignOutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.NewOrderFormServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ConfirmOrderServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ConfirmOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FinalOrderServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.FinalOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ShipOrderServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ShipOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UsernameExistServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.UsernameExistServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SearchAutoCompleteServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ajax_necesory.SearchAutoCompleteServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CartChangeServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ajax_necesory.CartChangeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FloatWindowServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ajax_necesory.FloatWindowServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FrameOrderServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ajax_necesory.FrameOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>OrderListServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.OrderListServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HistoryOrderServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.HistoryOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ViewCartAjaxServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ajax_necesory.ViewCartAjaxServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AjaxNewServlet</servlet-name>
+        <servlet-class>mypetstore.servlets.ajax_necesory.AjaxNewServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mainServlet</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewCategoryServlet</servlet-name>
+        <url-pattern>/view_category</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewProductServlet</servlet-name>
+        <url-pattern>/view_product</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewItemServlet</servlet-name>
+        <url-pattern>/view_item</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/addToCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewCartServlet</servlet-name>
+        <url-pattern>/viewCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RemoveItemFromCartServlet</servlet-name>
+        <url-pattern>/removeItem</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SignOnServlet</servlet-name>
+        <url-pattern>/signon</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewSignOnMainServlet</servlet-name>
+        <url-pattern>/view_signOn_main</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewAccountServlet</servlet-name>
+        <url-pattern>/view_account</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>EditAccountServlet</servlet-name>
+        <url-pattern>/edit_account</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RegisterOkServlet</servlet-name>
+        <url-pattern>/register_ok</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GotoRegisterServlet</servlet-name>
+        <url-pattern>/goto_register</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SignOutServlet</servlet-name>
+        <url-pattern>/sign_out</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <url-pattern>/newOrder_form</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ConfirmOrderServlet</servlet-name>
+        <url-pattern>/confirm</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FinalOrderServlet</servlet-name>
+        <url-pattern>/finalOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ShipOrderServlet</servlet-name>
+        <url-pattern>/ship</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UsernameExistServlet</servlet-name>
+        <url-pattern>/usernameExist</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SearchAutoCompleteServlet</servlet-name>
+        <url-pattern>/searchAutoComplete</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CartChangeServlet</servlet-name>
+        <url-pattern>/cartChange</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FloatWindowServlet</servlet-name>
+        <url-pattern>/floatWindow</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FrameOrderServlet</servlet-name>
+        <url-pattern>/frameOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>OrderListServlet</servlet-name>
+        <url-pattern>/orderList</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HistoryOrderServlet</servlet-name>
+        <url-pattern>/historyOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewCartAjaxServlet</servlet-name>
+        <url-pattern>/ajaxCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AjaxNewServlet</servlet-name>
+        <url-pattern>/newAccount</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
