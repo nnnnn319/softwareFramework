@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header th:fragment="header">
+    <div id="Header">
+
+        <div id="Logo">
+            <div id="LogoContent">
+                <a href="/"><img src="/images/logo-topbar.gif" /></a>
+            </div>
+        </div>
+<!--        <script src="../../../js/jquery-3.4.1.js"></script>-->
+<!--        <script src="../../../js/layer-v3.1.1/layer/layer.js"></script>-->
+<!--        <script src="../../../js/SignIn.js"></script>-->
+        <div id="Menu">
+            <div id="MenuContent">
+                <a href="/cart/view" id="viewCart">
+                    <img align="middle" name="img_cart" src="/images/cart.gif" />
+                </a>
+                <img align="middle" src="/images/separator.gif" />
+                <a href="/logout/" th:if="${session.username != null}"> Sign Out </a>
+                <a href="/signon" th:if="${session.username == null}"> Sign In </a>
+                <img align="middle" src="/images/separator.gif" />
+                <a href="/account/fix" th:if="${session.username != null}">My Account</a>
+<!--                </c:if>-->
+
+                <img align="middle" src="/images/separator.gif" th:if="${session.username != null}"/>
+
+                <a href="#">?</a>
+            </div>
+        </div>
+
+        <div id="Search">
+            <div id="SearchContent">
+                <form action="/search/" method="post">
+                    <input type="text" name="keyword" size="14" id = "keyword"/>
+                    <input type="submit" name="searchProducts" value="Search" />
+                </form>
+            </div>
+        </div>
+
+        <div id="QuickLinks">
+            <a th:href="@{/product/get(categoryId=FISH)}">
+                <img src="/images/sm_fish.gif" />
+            </a>
+            <img src="/images/separator.gif" />
+            <a th:href="@{/product/get(categoryId=DOGS)}">
+                <img src="/images/sm_dogs.gif" />
+            </a>
+            <img src="/images/separator.gif" />
+            <a th:href="@{/product/get(categoryId=REPTILES)}">
+                <img src="/images/sm_reptiles.gif" />
+            </a>
+            <img src="/images/separator.gif" />
+            <a th:href="@{/product/get(categoryId=CATS)}">
+                <img src="/images/sm_cats.gif" />
+            </a>
+            <img src="/images/separator.gif" />
+            <a th:href="@{/product/get(categoryId=BIRDS)}">
+                <img src="/images/sm_birds.gif" />
+            </a>
+        </div>
+
+    </div>
+
+</header>
+</body>
+</html>

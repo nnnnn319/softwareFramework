@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div th:replace="common/IncludeTop :: header" ></div>
+    <div id="Content">
+        <table align="center">
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+            </tr>
+           <tr th:each="pro, proIndex : ${productList}">
+                <td>
+                    <a th:href="@{/product/item(productId=${pro.productId})}" th:text="${pro.productId}">${pro.productId}</a>
+                </td>
+                <td th:text="${pro.name}">${pro.name}</td>
+            </tr>
+        </table>
+    </div>
+    <div th:replace="common/IncludeBottom :: footer"></div>
+</body>
+</html>

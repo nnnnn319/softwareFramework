@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.springbootdemo.persistence.MBCartDAO">
+
+    <select id="insertIntoCart" parameterType="CartItem">
+        INSERT INTO CART (USERNAME, ITEMID, PRODUCTID, DESCN, INSTOCK,
+        QUANTITY, LISTPRICE, TOTALPRICE)
+         VALUES (#{username}, #{item.itemId}, #{item.productId},
+          #{item.attribute1}, #{inStock}, #{quantity}, #{item.listPrice},#{total})
+    </select>
+
+
+    <select id="getCartItem" parameterType="java.lang.String" resultType="CartItem">
+        SELECT ITEMID as "item.itemId",
+        PRODUCTID as "item.product.productId",
+        DESCN as "item.attribute1",
+        INSTOCK as isStock,
+         QUANTITY as "item.quantity",
+         LISTPRICE as "item.listPrice",
+          TOTALPRICE as total
+         FROM CART WHERE USERNAME = #{username}
+    </select>
+
+    <select id="removeCartItem" parameterType="java.lang.String">
+        DELETE FROM CART WHERE ITEMID = #{itemId}
+    </select>
+
+    <select id="updateCart">
+        UPDATE CART SET QUANTITY = #{1} WHERE ITEMID = #{0}
+    </select>
+
+    <select id="selectItem" resultType="java.lang.String">
+        SELECT ITEMID FROM CART WHERE USERNAME=#{0}
+    </select>
+
+    <select id="increaseItemQuantity" parameterType="java.lang.String">
+        SELECT QUANTITY FROM CART WHERE ITEMID = #{itemId}
+    </select>
+</mapper>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:fragment="Information">
+    <h3>Account Information</h3>
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td><input type="text" name="firstName" th:value="${session.account.firstName}" /></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td><input type="text" name="lastName" th:value="${session.account.lastName}"/></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" size="40" name="email" th:value="${session.account.email}"/></td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td><input type="text" name="phone" th:value="${session.account.phone}"/></td>
+        </tr>
+        <tr>
+            <td>Address 1:</td>
+            <td><input type="text" size="40" name="address1" th:value="${session.account.address1}"/></td>
+        </tr>
+        <tr>
+            <td>Address 2:</td>
+            <td><input type="text" size="40" name="address2" th:value="${session.account.address2}"/></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td><input type="text"  name="city" th:value="${session.account.city}"/></td>
+        </tr>
+        <tr>
+            <td>State:</td>
+            <td><input type="text" size="4" name="state" th:value="${session.account.state}"/></td>
+        </tr>
+        <tr>
+            <td>Zip:</td>
+            <td><input type="text" size="10" name="zip" th:value="${session.account.zip}"/></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td><input type="text" size="15" name="country" th:value="${session.account.country}"/></td>
+        </tr>
+    </table>
+
+
+    <h3>Profile Information</h3>
+
+    <table>
+        <tr>
+            <td>Language Preference:</td>
+            <td>
+                <select name="languagePreference">
+<!--                    <c:forEach var="languagePreference" items="${languagePre}">-->
+<!--                    <option value="${languagePreference}" <c:if test="${languagePreference==sessionScope.account.languagePreference}">selected="selected"</c:if>>${languagePreference}</option>-->
+<!--                    </c:forEach>-->
+                    <option th:each="languagePreference, languagePreferenceIndex : ${languagePre}" th:text="${languagePreference}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Favourite Category:</td>
+            <td>
+                <select name="favouriteCategoryId">
+<!--                    <c:forEach var="favCategoryId" items="${favCategory}">-->
+<!--                        <option value="${favCategoryId}">-->
+<!--                        <c:if test="${favCategoryId==sessionScope.account.favouriteCategoryId }">selected="selected"</c:if>>${favCategoryId}-->
+<!--                        </option>-->
+<!--                    </c:forEach>-->
+                    <option th:each="favCategoryId, favCategoryIdIndex : ${favCategory}" th:text="${favCategoryId}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Enable MyList</td>
+            <td>
+<!--                <input type="checkbox" name="listOption"  <c:if test="${sessionScope.account.listOption}">checked="checked"</c:if>/>-->
+                <input type="checkbox" name="listOption" />
+            </td>
+        </tr>
+        <tr>
+            <td>Enable MyBanner</td>
+            <td>
+<!--                <input type="checkbox" name="bannerOption" <c:if test="${sessionScope.account.bannerOption}">checked="checked"</c:if>/>-->
+                <input type="checkbox" name="bannerOption"/>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

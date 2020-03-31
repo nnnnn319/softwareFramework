@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:replace="common/IncludeTop :: header" ></div>
+<div id="Content">
+    <div id="Catalog">
+        <div id="Cart">
+            <h2 th:if="${losMes}" th:text="${losMes}"></h2>
+            <h2>Shopping Cart</h2>
+            <form action="/cart/update" method="post">
+
+                <table>
+                    <tr>
+                        <th><b>Item ID</b></th>
+                        <th><b>Product ID</b></th>
+                        <th><b>Description</b></th>
+                        <th><b>In Stock?</b></th>
+                        <th><b>Quantity</b></th>
+                        <th><b>List Price</b></th>
+                        <th><b>Total Cost</b></th>
+                        <th>&nbsp;</th>
+                    </tr>
+
+<!--                    <c:if test="${sessionScope.cart.numberOfItems == 0}">-->
+                    <tr>
+                        <td colspan="8" ><b th:if="${cart.numberOfItems <= 0}">Your cart is empty.</b></td>
+                    </tr>
+<!--                    </c:if>-->
+<!--                    <script src="../../../js/jquery-3.4.1.js"></script>-->
+<!--                    <script src="../../../js/CartFixAuto.js"></script>-->
+<!--                    <c:forEach var="cartItem" items="${sessionScope.cart.cartItems}">-->
+                        <tr th:each="cartItem, cartIndex : ${cart.cartItems}">
+                            <td id="getHref">
+                                <a href="view_item?itemId=${cartItem.item.itemId}" id="itemId" th:text="${cartItem.item.itemId}">${cartItem.item.itemId}</a>
+                            </td>
+                            <td th:text="${cartItem.item.product.productId}">${cartItem.item.product.productId}</td>
+                            <td th:text="${cartItem.item.attribute1}">${cartItem.item.attribute1} ${cartItem.item.attribute2}
+                                ${cartItem.item.attribute3} ${cartItem.item.attribute4}
+                                ${cartItem.item.attribute5} ${cartItem.item.product.name}</td>
+                            <td th:text="${cartItem.inStock}">${cartItem.inStock}</td>
+<!--                            <td id="l" th:text="${cartItem.quantity}">-->
+                            <td id="l">
+                                <input type="text" name="itemId" th:value="${cartItem.quantity}" class="numChange"/>
+                            </td>
+                            <td id="listPrice" th:text="${cartItem.item.listPrice}">
+<!--                                <fmt:formatNumber value="${cartItem.item.listPrice}"-->
+<!--                                                                  pattern="$#,##0.00" />-->
+                            </td>
+                            <td id="totalPrice" class="cul" th:text="${cartItem.total}">
+<!--                                <fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00" />-->
+                            </td>
+                            <td >
+<!--                                <a href="removeItem?workingItemId=${cartItem.item.itemId}" class="Button">Remove</a>-->
+                                <a th:href="@{/cart/delete(workingItemId=${cartItem.item.itemId})}" class="Button">Remove</a>
+                            </td>
+                        </tr>
+<!--                    </c:forEach>-->
+
+                    <tr>
+                        <td colspan="7" id="subTotal">
+                            Sub Total:
+<!--                            <fmt:formatNumber value="${sessionScope.cart.subTotal}" pattern="$#,##0.00" />-->
+                            <span th:text="${cart.subTotal}"></span>
+<!--                            <input type="submit" value="Update Cart"/>-->
+                        </td>
+                        <td><input type="submit" value="Update Cart"/>&nbsp;</td>
+                        <td>&nbsp</td>
+                    </tr>
+                </table>
+            </form>
+<!--            <c:if test="${sessionScope.cart.numberOfItems > 0}">-->
+<!--                <script src="../../../js/jquery-3.4.1.js"></script>-->
+<!--                <script src="../../../js/layer-v3.1.1/layer/layer.js"></script>-->
+<!--                <script src="../../../js/TFrame.js"></script>-->
+            <a th:href="@{/order/first}" class="Button" id="frame_check" th:if="${cart.numberOfItems > 0}">Proceed to Checkout</a>
+<!--                <input type="button" id="frame_check" value="Proceed to Checkout"/>-->
+
+<!--            </c:if>-->
+        </div>
+
+        <div id="Separator">&nbsp;</div>
+    </div>
+</div>
+<div th:replace="common/IncludeBottom :: footer"></div>
+</body>
+</html>

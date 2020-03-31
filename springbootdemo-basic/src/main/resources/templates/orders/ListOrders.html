@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:replace="common/IncludeTop :: header" ></div>
+<div id="Content">
+    <h2>My Orders</h2>
+
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total Price</th>
+        </tr>
+
+<!--        <c:forEach var="order" items="${sessionScope.orderList}">-->
+            <tr th:each="order, orderIndex : ${orderList}">
+                <td>
+<!--                    <%&#45;&#45;				<stripes:link&#45;&#45;%>-->
+<!--                    <%&#45;&#45;				beanclass="org.mybatis.jpetstore.web.actions.OrderActionBean"&#45;&#45;%>-->
+<!--                    <%&#45;&#45;				event="viewOrder">&#45;&#45;%>-->
+<!--                    <%&#45;&#45;				<stripes:param name="orderId" value="${order.orderId}" />&#45;&#45;%>-->
+<!--                    <%&#45;&#45;			    ${order.orderId}&#45;&#45;%>-->
+<!--                    <%&#45;&#45;			  </stripes:link>&#45;&#45;%>-->
+                    <a th:href="@{/order/specific(orderId=${order.orderId})}" th:text="${order.orderId}">${order.orderId}</a>
+                </td>
+                <td th:text="${order.orderDate}">
+<!--                    <fmt:formatDate value="${order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />-->
+                </td>
+                <td th:text="${order.totalPrice}">
+<!--                    <fmt:formatNumber value="${order.totalPrice}" pattern="$#,##0.00" />-->
+                </td>
+            </tr>
+<!--        </c:forEach>-->
+    </table>
+</div>
+<div th:replace="common/IncludeBottom :: footer"></div>
+</body>
+</html>
