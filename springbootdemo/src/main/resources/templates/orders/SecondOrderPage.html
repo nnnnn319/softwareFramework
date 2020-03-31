@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:replace="common/IncludeTop :: header" ></div>
+<div id="Content">
+    <div id="Catalog">Please confirm the information below and then press continue...
+        <table>
+            <tr>
+                <th align="center" colspan="2"><font size="4"><b>Order</b></font>
+                    <br />
+                    <font size="3">
+                        <b th:text="${order.orderDate}">
+<!--                            <fmt:formatDate value="${sessionScope.order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />-->
+
+                        </b>
+                    </font>
+                </th>
+            </tr>
+
+            <tr>
+                <th colspan="2">Billing Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.billToFirstName}">
+<!--                    <c:out value="${sessionScope.order.billToFirstName}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.billToLastName}">
+<!--                    <c:out value="${sessionScope.order.billToLastName}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td th:text="${order.billAddress1}">
+<!--                    <c:out value="${sessionScope.order.billAddress1}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.billAddress2}"></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.billCity}">
+<!--                    <c:out value="${sessionScope.order.billCity}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.billState}">
+<!--                    <c:out value="${sessionScope.order.billState}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.billZip}">
+<!--                    <c:out value="${sessionScope.order.billZip}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.billCountry}">
+<!--                    <c:out value="${sessionScope.order.billCountry}" />-->
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Shipping Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.shipToFirstName}">
+<!--                    <c:out value="${sessionScope.order.shipToFirstName}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.shipToLastName}">
+<!--                    <c:out value="${sessionScope.order.shipToLastName}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td th:text="${order.shipAddress1}">
+<!--                    <c:out value="${sessionScope.order.shipAddress1}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.shipAddress2}">
+<!--                    <c:out value="${sessionScope.order.shipAddress2}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.shipCity}">
+<!--                    <c:out value="${sessionScope.order.shipCity}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.shipState}">
+<!--                    <c:out value="${sessionScope.order.shipState}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.shipZip}">
+<!--                    <c:out value="${sessionScope.order.shipZip}" />-->
+                </td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.shipCountry}">
+<!--                    <c:out value="${sessionScope.order.shipCountry}" />-->
+                </td>
+            </tr>
+
+        </table>
+        <a href="/order/third"><input type="submit" id="confirm"/>Confirm</a>
+    </div>
+</div>
+<div th:replace="common/IncludeBottom :: footer"></div>
+</body>
+</html>
