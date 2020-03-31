@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,17 +44,28 @@ public class OrderController {
         session.setAttribute("shippingAddressRequired",false);
         session.setAttribute("confirmed",false);
         session.setAttribute("orderList",null);
+
         if(account == null || !authenticated ) {
             String message ="You must sign on before attempting to check out.  Please sign on and try checking out again.";
             model.addAttribute("message",message);
             return "account/signOnForm";
         }
         else if(cart !=null){
+
+            //页面多选框
+            List<String> creditCard_types = new ArrayList<String>();
+            creditCard_types.add("Visa");
+            creditCard_types.add("MasterCard");
+            creditCard_types.add("American Express");
+            model.addAttribute("credit", creditCard_types);
+
             Order order= new Order();
             order.initOrder(account, cart);
+            model.addAttribute("order", order);
             return "order/newOrderForm";
         }
         else {
+
             String message ="An order could not be created because a cart could not be found.";
             model.addAttribute("message",message);
             return "common/error";
@@ -88,7 +100,7 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/viewOrder")
+    @GetMapping("/viewOrder")
     public String viewOrder(Model model, HttpSession session,int orderId) {
         Boolean shippingAddressRequired = (Boolean)session.getAttribute("shippingAddressRequired");
         Account account = (Account) session.getAttribute("account");

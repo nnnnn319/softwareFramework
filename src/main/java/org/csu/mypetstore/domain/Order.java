@@ -282,6 +282,11 @@ public class Order {
         locale = "CA";
         status = "P";
 
+        List<CartItem> cartItemList = cart.getCartItems();
+        for(int i=0;i<cartItemList.size();i++) {
+            CartItem cartItem = cartItemList.get(i);
+            addLineItem(cartItem);
+        }
 //        Iterator<CartItem> i = cart.getAllCartItems();
 //        while (i.hasNext()) {
 //            CartItem cartItem = (CartItem) i.next();

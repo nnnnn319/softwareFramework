@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,7 +29,19 @@ public class AccountController {
     private CartService cartService;
 
     @GetMapping("/viewNewAccountForm")
-    public String viewNewAccountForm() {
+    public String viewNewAccountForm(Model model) {
+        List<String> languagePre = new ArrayList<String>();
+        List<String> favCategory = new ArrayList<String>();
+        languagePre.add("english");
+        languagePre.add("chinese");
+        languagePre.add("japanese");
+        favCategory.add("CATS");
+        favCategory.add("FISH");
+        favCategory.add("DOGS");
+        favCategory.add("REPTILES");
+        favCategory.add("BIRDS");
+        model.addAttribute("languagePre", languagePre);
+        model.addAttribute("favCategory", favCategory);
         return "account/newAccountForm";
     }
 
@@ -98,6 +111,19 @@ public class AccountController {
         session.setAttribute("authenticated",false);
         session.setAttribute("username",null);
         return "catalog/main";
+    }
+
+    @PostMapping("/viewNewAccount")
+    public String newAccount(Model model) {
+        Account account = (Account) model.getAttribute("account");
+        accountService.insertAccount(account);
+        account = accountService.getAccount(account.getUsername());
+        List<Product> myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
+        model.addAttribute("authenticated",true);
+        model.addAttribute("myList",myList);
+        model.addAttribute("account",account);
+        model.addAttribute("username",account.getUsername());
+        return "catalog/view";
     }
 
 }

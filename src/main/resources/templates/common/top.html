@@ -30,11 +30,15 @@
                        </a>
                             <a th:if="(${session.account != null}) and (${session.authenticated})" href="/account/viewSignOut">
                                 Sign Out
+                                <img align="middle" src="../css/images/separator.gif" />
+                                <a href="/account/viewEditAccountForm">
+                                    My Account
+                                </a>
                             </a>
-                            <img align="middle" src="../css/images/separator.gif" />
-                            <a href="/account/viewEditAccountForm">
-                                My Account
-                            </a>
+<!--                            <img align="middle" src="../css/images/separator.gif" />-->
+<!--                            <a href="/account/viewEditAccountForm">-->
+<!--                                My Account-->
+<!--                            </a>-->
                     <img align="middle" src="../css/images/separator.gif" />
                     <a href="/account/viewHelp">?</a>
                 </div>
