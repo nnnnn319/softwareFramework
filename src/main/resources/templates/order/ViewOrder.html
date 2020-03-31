@@ -10,18 +10,19 @@
 <div th:replace="common/top">
 </div>
 <div id="Content">
+    <div id="Catalog">
     <div id="BackLink">
         <a href="/catalog/view">Return to Main Menu</a>
     </div>
 
-    <label th:if="${sessionScope.order != null}" th:text="${message}">
+    <label th:if="${session.order != null}" th:text="${message}">
     </label>
 
-    <div id="Catalog">
+
 
         <table>
             <tr>
-                <th align="center" colspan="2" th:text="'Order #'+${sessionScope.order.orderId}">
+                <th align="center" colspan="2" th:text="'Order #'+${#dates.format(session.order.orderDate,'yyyy/MM/dd hh:mm:ss')}">
 <!--                    <fmt:formatDate value="${sessionScope.order.orderDate}"-->
 <!--                                    pattern="yyyy/MM/dd hh:mm:ss" />-->
                 </th>
@@ -157,13 +158,8 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" th:text="|'Status', ${session.order.status}|">
+                <td colspan="2" th:text="'Status:'+${session.order.status}">
                     <!--                    Status: <c:out value="${sessionScope.order.status}" />-->
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" th:text="'Satuts:'+${sessionScope.order.status}">
-<!--                    Status: <c:out value="${sessionScope.order.status}" />-->
                 </td>
             </tr>
             <tr>
@@ -177,40 +173,39 @@
                             <th>Total Cost</th>
                         </tr>
 <!--                        <c:forEach var="lineItem" items="${sessionScope.order.lineItems}">-->
-                            <tr th:each="lineItem:${sessionScope.order.lineItems}">
+                            <tr th:each="lineItem:${session.order.lineItems}">
                                 <td>
                                     <a href="@{/catalog/viewItem(itemId=${lineItem.item.itemId})}" th:text="'Return to'+${lineItem.item.itemId}">Return to ${lineItem.item.itemId}</a>
                                 </td>
                                 <td th:if="${lineItem.item != null}" th:text="${lineItem.item.attribute1}">
-<!--                                    <c:if test="${lineItem.item != null}">-->
-                                        ${lineItem.item.attribute1}
-                                        ${lineItem.item.attribute2}
-                                        ${lineItem.item.attribute3}
-                                        ${lineItem.item.attribute4}
-                                        ${lineItem.item.attribute5}
-                                        ${lineItem.item.product.name}
-<!--                                    </c:if> -->
-<!--                                    <c:if test="${lineItem.item == null}">-->
+<!--&lt;!&ndash;                                    <c:if test="${lineItem.item != null}">&ndash;&gt;-->
+<!--                                        ${lineItem.item.attribute1}-->
+<!--                                        ${lineItem.item.attribute2}-->
+<!--                                        ${lineItem.item.attribute3}-->
+<!--                                        ${lineItem.item.attribute4}-->
+<!--                                        ${lineItem.item.attribute5}-->
+<!--                                        ${lineItem.item.product.name}-->
+<!--&lt;!&ndash;                                    </c:if> &ndash;&gt;-->
+<!--&lt;!&ndash;                                    <c:if test="${lineItem.item == null}">&ndash;&gt;-->
                                     <i th:if="${lineItem.item == null}">{description unavailable}</i>
-<!--                                </c:if>-->
+<!--&lt;!&ndash;                                </c:if>&ndash;&gt;-->
                                 </td>
 
                                 <td th:text="${lineItem.quantity}"></td>
                                 <td th:text="'$'+${#numbers.formatDecimal(lineItem.unitPrice,1,2)}">
 <!--                                    <fmt:formatNumber value="${lineItem.unitPrice}" pattern="$#,##0.00" />-->
                                 </td>
-                                <td>
                                 <td th:text="'$'+${#numbers.formatDecimal(lineItem.total,1,2)}"></td>
 <!--                                    <fmt:formatNumber value="${lineItem.total}" pattern="$#,##0.00" />-->
                                 </td>
                             </tr>
-<!--                        </c:forEach>-->
-                        <tr>
+<!--&lt;!&ndash;&lt;!&ndash;                        </c:forEach>&ndash;&gt;&ndash;&gt;-->
+<!--                        <tr>-->
                             <th colspan="5">
-                            <td th:text="'Total:$'+${#numbers.formatDecimal(sessionScope.order.totalPrice,1,2)}"></td>
+                            <td th:text="'Total:$'+${#numbers.formatDecimal(session.order.totalPrice,1,2)}"></td>
 <!--                                Total: <fmt:formatNumber value="${sessionScope.order.totalPrice}" pattern="$#,##0.00" />-->
                             </th>
-                        </tr>
+<!--                        </tr>-->
                     </table>
                 </td>
             </tr>

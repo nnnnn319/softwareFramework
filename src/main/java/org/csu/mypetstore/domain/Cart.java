@@ -61,16 +61,23 @@ public class Cart {
 ////        cartItem.incrementQuantity();
 //    }
 
-//    public Item removeItemById(String itemId) {
-//        CartItem cartItem = (CartItem) itemMap.remove(itemId);
-//        if (cartItem == null) {
-//            return null;
-//        } else {
-////            itemList.remove(cartItem);
-//            return null;
-////            return cartItem.getItem();
-//        }
-//    }
+
+    public Item removeItemById(String itemId) {
+        CartItem cartItem = containsItemId(itemId);
+        if (cartItem == null) {
+            return null;
+        }
+        else {
+//            itemList.remove(cartItem);
+            for(int i=0;i<cartItems.size();i++) {
+                if(cartItems.get(i).getItemId().equals(itemId)){
+                    cartItems.remove(i);
+                    return cartItem.getItem();
+                }
+            }
+            return null;
+        }
+    }
     public void removeCartItem(String itemId) {
         for(int i=0;i<cartItems.size();i++) {
             if(cartItems.get(i).getItemId().equals(itemId)){

@@ -45,6 +45,30 @@ public class AccountController {
         return "account/newAccountForm";
     }
 
+    @PostMapping("/editAccount")
+    public String editAccount(Model model,String repeatedPassword) {
+        Account account = (Account) model.getAttribute("account");
+
+        if (account.getPassword() == null || account.getPassword().length() == 0 || repeatedPassword == null || repeatedPassword.length() == 0) {
+            String message = "密码不能为空";
+            model.addAttribute("message", message);
+            return "account/editAccountForm";
+        } else if (!account.getPassword().equals(repeatedPassword)) {
+            String message = "两次密码不一致";
+            model.addAttribute("message", message);
+            return "account/editAccountForm";
+        } else {
+            accountService.updateAccount(account);
+            account = accountService.getAccount(account.getUsername());
+            List<Product> myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
+            boolean authenticated = true;
+            model.addAttribute("account", account);
+            model.addAttribute("myList", myList);
+            model.addAttribute("username", account.getUsername());
+            model.addAttribute("authenticated", authenticated);
+            return "catalog/view";
+        }
+    }
     @GetMapping("/viewHelp")
     public String viewHelp() {
         return "common/help";

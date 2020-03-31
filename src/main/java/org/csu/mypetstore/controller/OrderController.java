@@ -1,8 +1,8 @@
 package org.csu.mypetstore.controller;
 
-import org.csu.mypetstore.domain.Account;
-import org.csu.mypetstore.domain.Cart;
-import org.csu.mypetstore.domain.Order;
+import org.csu.mypetstore.domain.*;
+import org.csu.mypetstore.service.CartService;
+import org.csu.mypetstore.service.CatalogService;
 import org.csu.mypetstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +22,10 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private CatalogService catalogService;
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/listOrders")
     public String listOrders(Model model, HttpSession session) {
@@ -41,7 +45,7 @@ public class OrderController {
         model.addAttribute("confirmed",false);
         model.addAttribute("orderList",null);
         session.setAttribute("order",null);
-        session.setAttribute("shippingAddressRequired",false);
+//        session.setAttribute("shippingAddressRequired",false);
         session.setAttribute("confirmed",false);
         session.setAttribute("orderList",null);
 
@@ -74,7 +78,8 @@ public class OrderController {
 
     @PostMapping("/viewConfirmOrder")
     public String newOrder(Model model, HttpSession session) {
-        Boolean shippingAddressRequired = (Boolean)session.getAttribute("shippingAddressRequired");
+        Boolean shippingAddressRequired = (Boolean) model.getAttribute("shippingAddressRequired");
+//        Boolean shippingAddressRequired = (Boolean)session.getAttribute("shippingAddressRequired");
         Boolean confirmed = (Boolean)session.getAttribute("confirmed");
         Order order = (Order)session.getAttribute("order");
         if(shippingAddressRequired) {
@@ -101,10 +106,23 @@ public class OrderController {
     }
 
     @GetMapping("/viewOrder")
-    public String viewOrder(Model model, HttpSession session,int orderId) {
+    public String viewOrder(Model model, HttpSession session) {
+        String username =(String) session.getAttribute("username");
         Boolean shippingAddressRequired = (Boolean)session.getAttribute("shippingAddressRequired");
         Account account = (Account) session.getAttribute("account");
-        Order order = orderService.getOrder(orderId);
+        Order order = (Order) session.getAttribute("order");
+        orderService.insertOrder(order);
+        Cart cart = (Cart)session.getAttribute("cart");
+
+        List<LineItem>lineItems = ((Order)session.getAttribute("order")).getLineItems();
+
+        for(int i=0;i<lineItems.size();i++){
+            cart.removeItemById(lineItems.get(i).getItemId());
+            CartItem cartItem = new CartItem();
+            cartItem.setItemId(lineItems.get(i).getItemId());
+            cartItem.setCartId(username);
+            cartService.removeCartItem(cartItem);
+        }
         if (account.getUsername().equals(order.getUsername())) {
             return "order/viewOrder";
         } else {

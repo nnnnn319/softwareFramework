@@ -10,7 +10,9 @@
 </div>
 <div id="Content">
     <div id="Catalog">
-        <form action="#" method="post">
+
+        <label th:if="${message != null}" th:text="${message}"></label>
+        <form action="/account/editAccount" method="post">
 
             <h3>User Information</h3>
 
@@ -22,13 +24,13 @@
                 <tr>
                     <td>New password:</td>
                     <td>
-                        <input type="text" th:name="password" />
+                        <input type="text" name="password" />
                     </td>
                 </tr>
                 <tr>
                     <td>Repeat password:</td>
                     <td>
-                        <input type="text" th:name="repeatedPassword" />
+                        <input type="text" name="repeatedPassword" />
                     </td>
                 </tr>
             </table>
@@ -38,7 +40,7 @@
             <input type="submit" name="editAccount" value="Save Account Information" />
 
         </form>
-        <a href="listOrders">My Orders</a>
+        <a href="/order/listOrders">My Orders</a>
     </div>
 
 </div>

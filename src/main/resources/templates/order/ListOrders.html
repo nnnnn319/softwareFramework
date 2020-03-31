@@ -11,7 +11,6 @@
 </div>
 <div id="Content">
     <h2>My Orders</h2>
-
     <table>
         <tr>
             <th>Order ID</th>
@@ -29,6 +28,8 @@
 <!--                    ${order.orderId}-->
 <!--                </stripes:link></td>-->
                 </td>
+                <td th:text="${#dates.format(order.orderDate,'yyyy/MM/dd hh:mm:ss')}"></td>
+
 <!--                <td><fmt:formatDate value="${order.orderDate}"-->
 <!--                                    pattern="yyyy/MM/dd hh:mm:ss" /></td>-->
 <!--                <td><fmt:formatNumber value="${order.totalPrice}"-->
