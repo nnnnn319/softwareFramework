@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+</div>
+<div id="Content">
+<div id="Catalog">
+    <form action="viewSaveAccountInfo" method="post">
+
+        <h3>User Information</h3>
+
+        <table>
+            <tr>
+                <td>User ID:</td>
+                <td>
+                    <input type="text" th:name="username" />
+                </td>
+            </tr>
+            <tr>
+                <td>New password:</td>
+                <td>
+                    <input type="text" th:name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td>Repeat password:</td>
+                <td>
+                    <input type="text" th:name="repeatedPassword" />
+                </td>
+            </tr>
+        </table>
+        <h3>Account Information</h3>
+
+        <table>
+            <tr>
+                <td>First name:</td>
+                <td>
+                    <input type="text" th:name="firstName" />
+                </td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td>
+                    <input type="text" th:name="lastName"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="text" size="40" th:name="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>
+                    <input type="text" th:name="phone"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td>
+                    <input type="text" size="40" th:name="address1"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td>
+                    <input type="text" size="40" th:name="address2"/>
+                </td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td>
+                    <input type="text" th:name="city" />
+                </td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td>
+                    <input type="text" size="4" th:name="state"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td>
+                    <input type="text" size="10" th:name="zip"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td>
+                    <input type="text" size="15" th:name="country"/>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Profile Information</h3>
+
+        <table>
+            <tr>
+                <td>Language Preference:</td>
+                <td>
+                    <select name="languagePreference">
+                        <option value="english">english</option>
+                        <option value="japanese">japaneses</option>
+                    </select>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>Favourite Category:</td>
+                <td>
+                    <select name="favouriteCategoryId">
+                        <option value="FISH">FISH</option><
+                        <option value="DOGS">DOGS</option>
+                        <option value="REPTILES">REPTILES</option>
+                        <option value="CATS">CATS</option>
+                        <option value="BIRDS">BIRDS</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Enable MyList</td>
+                <td>
+                    <input type="checkbox" th:name="account.listOption" />
+                </td>
+            </tr>
+            <tr>
+                <td>Enable MyBanner</td>
+                <td>
+                    <input type="checkbox" th:name="account.bannerOption" />
+                </td>
+            </tr>
+
+        </table>
+        <input type="submit" name="" value="Save Account Information" />
+    </form>
+</div>
+</div>
+<div th:replace="common/bottom">
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.mypetstore.persistence.CartMapper">
+    <select id="getCartItemListByCartId" parameterType="string" resultType="CartItem">
+    SELECT
+       ITEMID,
+       QUANTITY
+    FROM CART
+    WHERE CARTID = #{username}
+    </select>
+    <select id="getCartItemByCartIdAndItemId" parameterType="string" resultType="CartItem">
+    SELECT
+       CARTID,
+       ITEMID,
+       QUANTITY,
+       INSTOCK
+    FROM CART
+    WHERE CARTID = #{cardId} AND ITEMID = #{itemId}
+    </select>
+    <insert id="insertCartItem" parameterType="CartItem">
+    INSERT INTO CART
+      (CARTID, ITEMID, QUANTITY, INSTOCK)
+    VALUES
+      (#{cartId}, #{itemId}, #{quantity}, #{inStock})
+    </insert>
+    <update id="updateCartItem" parameterType="CartItem">
+    UPDATE CART SET
+    QUANTITY = #{quantity}
+    WHERE ITEMID = #{itemId} AND CARTID = #{cartId}
+  </update>
+    <delete id="removeCartItem" parameterType="CartItem">
+        DELETE FROM CART
+          WHERE ITEMID = #{itemId} AND CARTID = #{cartId}
+    </delete>
+
+</mapper>
