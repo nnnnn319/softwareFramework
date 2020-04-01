@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:replace="common/IncludeTop :: header" ></div>
+<div id="Content">
+    <div id="Welcome">
+        <div id="WelcomeContent">
+    <!--        <c:if test="${sessionScope.account != null}">-->
+    <!--            Welcome to MyPetStore ${sessionScope.account.firstName}!-->
+    <!--        </c:if>-->
+    <!--        <c:if test="${sessionScope.account == null}">-->
+    <!--            Welcome to MyPetStore !-->
+    <!--        </c:if>-->
+            Welcome to MyPetStore
+            <span th:text="${session.username}"></span>
+            !
+        </div>
+    </div>
+
+    <div id="Main">
+        <div id="Sidebar">
+            <div id="SidebarContent">
+<!--                <a href="view_category?categoryId=FISH"><img src="/images/fish_icon.gif" /></a>-->
+<!--                <br/> Saltwater, Freshwater <br/>-->
+                <a th:href="@{/product/get(categoryId=FISH)}"><img src="/images/fish_icon.gif" /></a>
+                <br/> Saltwater, Freshwater <br/>
+
+                <a th:href="@{/product/get(categoryId=DOGS)}"><img src="/images/dogs_icon.gif" /></a>
+                <br /> Various Breeds <br />
+                <a th:href="@{/product/get(categoryId=CATS)}"><img src="/images/cats_icon.gif" /></a>
+                <br /> Various Breeds, Exotic Varieties <br />
+                <a th:href="@{/product/get(categoryId=REPTILES)}"><img src="/images/reptiles_icon.gif" /></a>
+                <br /> Lizards, Turtles, Snakes <br />
+                <a th:href="@{/product/get(categoryId=BIRDS)}"><img src="/images/birds_icon.gif" /></a>
+                <br /> Exotic Varieties
+            </div>
+        </div>
+
+    <!--    <script src="../../../js/jquery-3.4.1.js"></script>-->
+    <!--    <script src="../../../js/FloatWindow.js"></script>-->
+
+        <div id="MainImage">
+            <div id="MainImageContent">
+                <map name="estoremap">
+                    <area alt="Birds" coords="72,2,280,250" th:href="@{/product/get(categoryId=BIRDS)}" shape="rect" id="birds" class="float"/>
+                    <area alt="Fish" coords="2,180,72,250" th:href="@{/product/get(categoryId=FISH)}" shape="rect" id="fish" class="float"/>
+                    <area alt="Dogs" coords="60,250,130,320" th:href="@{/product/get(categoryId=DOGS)}" shape="rect" id="dogs" class="float"/>
+                    <area alt="Reptiles" coords="140,270,210,340" th:href="@{/product/get(categoryId=REPTILES)}" shape="rect" id="reptiles" class="float"/>
+                    <area alt="Cats" coords="225,240,295,310" th:href="@{/product/get(categoryId=CATS)}" shape="rect" id="cats" class="float"/>
+                    <area alt="Birds" coords="280,180,350,250" th:href="@{/product/get(categoryId=BIRDS)}" shape="rect" id="bird" class="float"/>
+                </map>
+                <img height="355" src="/images/splash.gif" align="middle" usemap="#estoremap" width="350" />
+            </div>
+
+            <div id="float" >specific information</div>
+        </div>
+        <div id="Separator">&nbsp;</div>
+    </div>
+
+
+</div>
+<div th:replace="common/IncludeBottom :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div th:replace="common/IncludeTop :: header" ></div>
+        <div id="Content">
+            <div id="Catalog">
+                <form method="post" action="/register/get">
+                    <h3>User Information</h3>
+                    <table>
+                        <tr>
+                            <td >User ID:</td>
+                            <td><input type="text" name="username" id="newId"/></td>
+                        </tr>
+                        <tr>
+                            <td>New password:</td>
+                            <td><input type="password" name="password"/></td>
+                        </tr>
+                        <tr>
+                            <td>Repeat password:</td>
+                            <td><input type="password" name="repeatedPassword"/></td>
+                        </tr>
+                    </table>
+                    <div th:replace="account/IncludeRegister :: RegisterInformation" ></div>
+                    <input type="submit" name="newAccount" value="Save Account Information" />
+                </form>
+            </div>
+        </div>
+    <div th:replace="common/IncludeBottom :: footer"></div>
+</body>
+</html>
