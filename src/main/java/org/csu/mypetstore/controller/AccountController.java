@@ -28,10 +28,12 @@ public class AccountController {
     @Autowired
     private CartService cartService;
 
+    private List<String> languagePre = new ArrayList<String>();
+    private List<String> favCategory = new ArrayList<String>();
+
     @GetMapping("/viewNewAccountForm")
     public String viewNewAccountForm(Model model) {
-        List<String> languagePre = new ArrayList<String>();
-        List<String> favCategory = new ArrayList<String>();
+
         languagePre.add("english");
         languagePre.add("chinese");
         languagePre.add("japanese");
@@ -46,9 +48,7 @@ public class AccountController {
     }
 
     @PostMapping("/editAccount")
-    public String editAccount(Model model,String repeatedPassword) {
-        Account account = (Account) model.getAttribute("account");
-
+    public String editAccount(Account account,Model model,String repeatedPassword) {
         if (account.getPassword() == null || account.getPassword().length() == 0 || repeatedPassword == null || repeatedPassword.length() == 0) {
             String message = "密码不能为空";
             model.addAttribute("message", message);
@@ -66,7 +66,7 @@ public class AccountController {
             model.addAttribute("myList", myList);
             model.addAttribute("username", account.getUsername());
             model.addAttribute("authenticated", authenticated);
-            return "catalog/view";
+            return "catalog/main";
         }
     }
     @GetMapping("/viewHelp")
@@ -75,8 +75,19 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public String login(String username, String password, Model model) {
+    public String login(String username, String password, Model model,String code_user) {
         Account account = accountService.getAccount(username, password);
+        System.out.println(code_user+"111");
+        if(code_user.equals("0")) {
+            String message = "Please enter a validation code!";
+            model.addAttribute("message",message);
+            return "account/SignOnForm";
+        }
+        if(!code_user.equals("1")) {
+            String message = "Wrong validation code!";
+            model.addAttribute("message",message);
+            return "account/SignOnForm";
+        }
         if (account == null) {
             String message = "Invalid username or password.  Signon failed.";
             model.addAttribute("message",message);
@@ -113,6 +124,16 @@ public class AccountController {
 
     @GetMapping("/viewEditAccountForm")
     public String viewEditAccountForm(Model model,HttpSession session) {
+        languagePre.add("english");
+        languagePre.add("chinese");
+        languagePre.add("japanese");
+        favCategory.add("CATS");
+        favCategory.add("FISH");
+        favCategory.add("DOGS");
+        favCategory.add("REPTILES");
+        favCategory.add("BIRDS");
+        model.addAttribute("languagePre", languagePre);
+        model.addAttribute("favCategory", favCategory);
         Account account=(Account)session.getAttribute("account");
         if(account ==null) {
             String message ="Please login first";
@@ -138,8 +159,8 @@ public class AccountController {
     }
 
     @PostMapping("/viewNewAccount")
-    public String newAccount(Model model) {
-        Account account = (Account) model.getAttribute("account");
+    public String newAccount(Account account,Model model) {
+        System.out.println(account.getEmail());
         accountService.insertAccount(account);
         account = accountService.getAccount(account.getUsername());
         List<Product> myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
@@ -147,7 +168,7 @@ public class AccountController {
         model.addAttribute("myList",myList);
         model.addAttribute("account",account);
         model.addAttribute("username",account.getUsername());
-        return "catalog/view";
+        return "catalog/main";
     }
 
 }

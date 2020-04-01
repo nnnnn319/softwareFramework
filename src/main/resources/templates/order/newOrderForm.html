@@ -11,7 +11,7 @@
 </div>
 <div id="Content">
     <div id="Catalog">
-        <form action="/order/viewConfirmOrder" method="post">
+        <form action="/order/viewConfirmOrder" method="post" th:object="${order}">
 
             <table>
                 <tr>
@@ -73,7 +73,7 @@
                 </tr>
                             <tr>
                                 <td colspan=2>
-                                    <input type="checkbox" th:value="${session.shippingAddressRequire}"/>
+                                    <input id="test" type="checkbox" name="shippingAddressRequired"/>
                                     Ship to different address...
                                 </td>
                             </tr>

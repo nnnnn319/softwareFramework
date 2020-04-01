@@ -87,7 +87,7 @@
                <td>Favourite Category:</td>
                <td>
                    <select name="favouriteCategoryId">
-                   <option th:each="favCategoryId, favCategoryIdIndex : ${favCategory}"></option>
+                   <option th:each="favCategoryId, favCategoryIdIndex : ${favCategory}" th:text="${favCategoryId}"></option>
                    </select>
                </td>
            </tr>

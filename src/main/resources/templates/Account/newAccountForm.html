@@ -10,7 +10,7 @@
 </div>
 <div id="Content">
 <div id="Catalog">
-    <form action="/account/viewNewAccount" method="post">
+    <form action="/account/viewNewAccount" method="post" th:object="${account}">
 
         <h3>User Information</h3>
 
@@ -52,7 +52,7 @@
             <tr>
                 <td>Email:</td>
                 <td>
-                    <input type="text" size="40" name="email"/>
+                    <input type="text" size="40" th:name="email"/>
                 </td>
             </tr>
             <tr>
@@ -94,7 +94,7 @@
             <tr>
                 <td>Country:</td>
                 <td>
-                    <input type="text" size="15" th:name="account.country"/>
+                    <input type="text" size="15" th:name="country"/>
                 </td>
             </tr>
         </table>

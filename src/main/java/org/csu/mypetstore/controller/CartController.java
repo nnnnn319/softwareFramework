@@ -91,7 +91,6 @@ public class CartController {
         return "account/signOnForm";
     }
 
-
     @GetMapping("/removeItemFromCart")
     public String removeItemFromCart(String itemId, Model model,HttpSession session){
         Cart cart = (Cart)session.getAttribute("cart");
@@ -110,5 +109,68 @@ public class CartController {
 
         return "cart/cart";
     }
+
+//    @GetMapping("/removeItemFromCart")
+//    public String removeItemFromCart(Model model,HttpSession session) {
+//        Cart cart =(Cart)model.getAttribute("cart");
+//        List<CartItem> cartItems = cart.getCartItems();
+//        for(int i=0;i<cartItems.size();i++) {
+//            CartItem cartItem = (CartItem) cartItems.get(i);
+//            String itemId = cartItem.getItem().getItemId();
+//            int quantity=(Integer) model.getAttribute(itemId);
+//            if(quantity<=0) {
+//                String username =(String)session.getAttribute("username");
+//                CartItem cartItem1 =new CartItem();
+//                cartItem1.setCartId(username);
+//                cartItem1.setItemId(itemId);
+//                cartService.removeCartItem(cartItem1);
+//
+//                //增加库存
+//                CartItem cartItem2 = cart.containsItemId(itemId);
+//                catalogService.updateInventoryQuantity(cartItem2);
+//
+//                cart.removeCartItem(itemId);
+//                model.addAttribute("cart",cart);
+//            }
+//            else {
+//
+//            }
+//            int nowQuantity=cartItem.getQuantity();
+//            int cha=quantity-nowQuantity;
+//            if(cha>=0) {
+//                boolean inStock = catalogService.isItemInStock(itemId,cha);
+//                if(inStock) {
+//                    cartItem.setQuantity(nowQuantity);
+//                    //减少库存
+//                    catalogService.updateInventoryQuantity(cartItem);
+//                }
+//                else {
+//                    String message ="Sorry add failed,insufficient inventory";
+//                    model.addAttribute("message",message);
+//                }
+//            }
+//            else {
+//
+//            }
+//            getCart().setQuantityByItemId(itemId, quantity);
+//            if (quantity < 1) {
+//                cartItems.remove();
+//            }
+//        }
+//        while (cartItems.hasNext()) {
+//
+//
+//            try {
+//                int quantity = Integer.parseInt((String) request.getParameter(itemId));
+//                getCart().setQuantityByItemId(itemId, quantity);
+//                if (quantity < 1) {
+//                    cartItems.remove();
+//                }
+//            } catch (Exception e) {
+//                //ignore parse exceptions on purpose
+//            }
+//        }
+//    }
+
 
 }

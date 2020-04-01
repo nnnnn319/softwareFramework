@@ -10,6 +10,7 @@
 <div th:replace="common/top">
 </div>
 <div id="Content">
+    <div id="Catalog">
     <h2>My Orders</h2>
     <table>
         <tr>
@@ -37,6 +38,7 @@
                 <td th:text="'$'+${#numbers.formatDecimal(order.totalPrice,1,2)}"></td>
             </tr>
     </table>
+    </div>
 </div>
 <div th:replace="common/bottom">
 </div>

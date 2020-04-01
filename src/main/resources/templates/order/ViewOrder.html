@@ -175,7 +175,7 @@
 <!--                        <c:forEach var="lineItem" items="${sessionScope.order.lineItems}">-->
                             <tr th:each="lineItem:${session.order.lineItems}">
                                 <td>
-                                    <a href="@{/catalog/viewItem(itemId=${lineItem.item.itemId})}" th:text="'Return to'+${lineItem.item.itemId}">Return to ${lineItem.item.itemId}</a>
+                                    <a href="@{/catalog/viewItem(itemId=${lineItem.item.itemId})}" th:text="'Return to '+${lineItem.item.itemId}">Return to ${lineItem.item.itemId}</a>
                                 </td>
                                 <td th:if="${lineItem.item != null}" th:text="${lineItem.item.attribute1}">
 <!--&lt;!&ndash;                                    <c:if test="${lineItem.item != null}">&ndash;&gt;-->

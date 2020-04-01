@@ -12,7 +12,7 @@
     <div id="Catalog">
 
         <label th:if="${message != null}" th:text="${message}"></label>
-        <form action="/account/editAccount" method="post">
+        <form action="/account/editAccount" method="post" th:object="${account}">
 
             <h3>User Information</h3>
 

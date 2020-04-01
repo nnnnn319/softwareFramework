@@ -13,14 +13,100 @@
     <label th:if="${message!=null}" th:text="${message}"></label>
 
     <div id="Catalog">
-        <form action="/account/login" method="post" name="loginForm">
+        <form action="/account/login" method="post" name="loginForm" onsubmit="ident()">
 
             <p>Please enter your username and password.</p>
-            <p>
+            <br>
                 Username:<input type="text" name="username" value="j2ee"/><br />
-                Password:<input type="password" name="password" value="j2ee" />
+                Password:<input type="password" name="password" value="j2ee" /></br>
+               Identify Code:
+                <input type="text" id ="text" name = "identify" />
+                <input type="hidden" id = "code_user" name = "code_user" />
+                <input type="hidden" id = "code_true" name = "code_true" />
+                <br/><br/>
+                    <canvas id="canvas" width="100" height="43" onclick="dj()" style="border: 1px solid #ccc; border-radius: 5px;" name = "try"></canvas>
             </p>
             <input type="submit" name="signon" value="Login" />
+            <script>
+                var show_num = [];
+                draw(show_num);
+                function dj(){
+                    draw(show_num);
+                }
+                function ident(){
+                    var val=document.getElementById("text").value;
+                    var num = show_num.join("");
+                    if(val==''){
+                        // alert('Please enter a validation code!');
+
+                        document.getElementById("code_user").value = "0";
+
+                    }else if(val == num){
+                        document.getElementById("code_user").value = "1";
+                        // alert('success!');
+                        document.getElementById(".input-val").val('');
+                        draw(show_num);
+
+                    }else{
+                        document.getElementById("text").value='';
+                        draw(show_num);
+                        document.getElementById("code_user").value = "2";
+                    }
+                }
+                function draw(show_num) {
+                    var canvas_width=document.getElementById('canvas').clientWidth;
+                    var canvas_height=document.getElementById('canvas').clientHeight;
+                    var canvas = document.getElementById("canvas");
+                    var context = canvas.getContext("2d");
+                    canvas.width = canvas_width;
+                    canvas.height = canvas_height;
+                    var sCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0,q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m";
+                    var aCode = sCode.split(",");
+                    var aLength = aCode.length;
+
+                    for (var i = 0; i <= 3; i++) {
+                        var j = Math.floor(Math.random() * aLength);
+                        var deg = Math.random() * 30 * Math.PI / 180;
+                        var txt = aCode[j];
+                        show_num[i] = txt;
+                        var x = 10 + i * 20;
+                        var y = 20 + Math.random() * 8;
+                        context.font = "bold 23px 微软雅黑";
+
+                        context.translate(x, y);
+                        context.rotate(deg);
+
+                        context.fillStyle = randomColor();
+                        context.fillText(txt, 0, 0);
+
+                        context.rotate(-deg);
+                        context.translate(-x, -y);
+                    }
+                    for (var i = 0; i <= 5; i++) {
+                        context.strokeStyle = randomColor();
+                        context.beginPath();
+                        context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+                        context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+                        context.stroke();
+                    }
+                    for (var i = 0; i <= 30; i++) {
+                        context.strokeStyle = randomColor();
+                        context.beginPath();
+                        var x = Math.random() * canvas_width;
+                        var y = Math.random() * canvas_height;
+                        context.moveTo(x, y);
+                        context.lineTo(x + 1, y + 1);
+                        context.stroke();
+                    }
+                }
+                function randomColor() {
+                    var r = Math.floor(Math.random() * 256);
+                    var g = Math.floor(Math.random() * 256);
+                    var b = Math.floor(Math.random() * 256);
+                    return "rgb(" + r + "," + g + "," + b + ")";
+                }
+            </script>
+
         </form>
         Need a user name and password?
         <a href="/account/viewNewAccountForm">Register Now!</a>

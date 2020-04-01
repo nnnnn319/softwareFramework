@@ -28,7 +28,7 @@
       AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
   </select>
 
-    <select id="getAccountByUsernameAndPassword" parameterType="account" resultType="Account">
+    <select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
     SELECT
       SIGNON.USERNAME,
       ACCOUNT.EMAIL,
@@ -72,10 +72,9 @@
   </update>
 
     <insert id="insertAccount" parameterType="Account">
-    INSERT INTO ACCOUNT
-      (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, USERID)
+    INSERT INTO ACCOUNT (USERID, EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE)
     VALUES
-      (#{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username})
+      (#{username}, #{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone})
   </insert>
 
     <update id="updateProfile" parameterType="Account">

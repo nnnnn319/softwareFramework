@@ -11,10 +11,17 @@
 
             <div id="PoweredBy">&nbsp<a href="www.csu.edu.cn">www.csu.edu.cn</a>
             </div>
-
             <div id="Banner">
-            </div>
+<!--                <img th:if="(${session.account != null }) and (${session.authenticated}) and (${session.account.bannerOption})" th:src=" ${session.account.bannerName}">-->
+                </img>
+<!--                <th:if="${sessionScope.accountBean.authenticated}">-->
+<!--                    <th:if test="${sessionScope.accountBean.account.bannerOption}">-->
+<!--                        ${sessionScope.accountBean.account.bannerName}-->
 
+<!--                    </th:if>-->
+<!--                </th:if>-->
+<!--            </th:if>-->
+            </div>
         </div>
     </footer>
 </body>

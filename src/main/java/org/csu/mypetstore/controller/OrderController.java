@@ -77,17 +77,17 @@ public class OrderController {
     }
 
     @PostMapping("/viewConfirmOrder")
-    public String newOrder(Model model, HttpSession session) {
-        Boolean shippingAddressRequired = (Boolean) model.getAttribute("shippingAddressRequired");
-//        Boolean shippingAddressRequired = (Boolean)session.getAttribute("shippingAddressRequired");
+    public String newOrder(Model model, HttpSession session,Boolean shippingAddressRequired,Order order) {
+
         Boolean confirmed = (Boolean)session.getAttribute("confirmed");
-        Order order = (Order)session.getAttribute("order");
+//        Order order = (Order)model.getAttribute("order");
         if(shippingAddressRequired) {
             model.addAttribute("shippingAddressRequired",false);
             session.setAttribute("shippingAddressRequired",false);
             return "order/shippingForm";
         }
         else if (!confirmed) {
+            model.addAttribute("order",order);
             return "order/ConfirmOrder";
         }
         else if (order!= null) {
@@ -106,11 +106,11 @@ public class OrderController {
     }
 
     @GetMapping("/viewOrder")
-    public String viewOrder(Model model, HttpSession session) {
+    public String viewOrder(Model model, HttpSession session,Order order) {
         String username =(String) session.getAttribute("username");
-        Boolean shippingAddressRequired = (Boolean)session.getAttribute("shippingAddressRequired");
+//        Boolean shippingAddressRequired = (Boolean)session.getAttribute("shippingAddressRequired");
         Account account = (Account) session.getAttribute("account");
-        Order order = (Order) session.getAttribute("order");
+//        Order order = (Order) session.getAttribute("order");
         orderService.insertOrder(order);
         Cart cart = (Cart)session.getAttribute("cart");
 
