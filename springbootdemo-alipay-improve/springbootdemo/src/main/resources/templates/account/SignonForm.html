@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div th:replace="common/IncludeTop :: header" ></div>
+    <div id="Content">
+<!--        <div id="BackLink">-->
+<!--            <a href="main">Return to Main Menu</a>-->
+<!--        </div>-->
+        <div id="SignCatalog">
+                <form action="/login/" method="post" id="form_sign">
+<!--                    <div id="login_form">-->
+                        <span class="login_span">Username:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                        <input type="text" class="input" name="username" id="username" />
+                        <br>
+                        <span class="login_span">Password:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                        <input type="password" name="password" class="input"/>
+                        <br>
+                        <span class="login_span">Phone Number:&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                        <input type="text" name="phonenum" class="input" id="number">
+                        <br>
+                        <span class="login_span">Identify Code:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                        <input type="text" name="code" class="input" >
+<!--                    </div>-->
+                    <input type="button" value="Get Code" id="code"/>
+                    <br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <input type="submit" name="signon" value="Login" id="submit_i"/>
+                </form>
+            <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
+            <script type="text/javascript">
+                var countdown=60;
+
+                function settime(obj) {
+                    if (countdown == 0) {
+                        obj.removeAttribute("disabled");
+                        obj.value="获取验证码";
+                        countdown = 60;
+                        return;
+                    } else {
+                        obj.setAttribute("disabled", true);
+                        obj.value="重新发送(" + countdown + ")";
+                        countdown--;
+                    }
+                    setTimeout(function() {
+                            settime(obj);
+                        }
+                        ,1000);
+                }
+                $("#code").click(function () {
+                    var params = document.getElementById("number").value
+                    settime(this);
+                    $.ajax({url:"/login/code",
+                        data: {"param": params},
+                        success:function(result){
+                           alert("验证码发送成功")
+                        }
+                    });
+                })
+            </script>
+            <div id="register_a">
+                Need a user name and password?
+                <a href="/register/goto" >Register Now!</a>
+            </div>
+        </div>
+    </div>
+    <div th:replace="common/IncludeBottom :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/jpetstore.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:replace="common/IncludeTop :: header" ></div>
+<div id="Content">
+    <table>
+        <tr>
+            <th>Item ID</th>
+            <th>Product ID</th>
+            <th>Description</th>
+            <th>List Price</th>
+            <th>&nbsp;</th>
+        </tr>
+<!--        <c:forEach var="item" items="${sessionScope.itemList}">-->
+            <tr th:each="item,itemIndex : ${itemList}">
+                <td>
+                    <a th:href="@{/product/specificitem(itemId=${item.itemId})}" th:text="${item.itemId}">${item.itemId}</a>
+                </td>
+                <td th:text="${item.product.productId}">${item.product.productId}</td>
+                <td th:text="${item.attribute1}">
+                    ${item.attribute1} ${item.attribute2} ${item.attribute3}${item.attribute4} ${item.attribute5} ${sessionScope.product.name}
+                </td>
+                <td th:text="${#numbers.formatInteger(item.listPrice, 2)}">
+<!--                    <fmt:formatNumber value="${item.listPrice}"-->
+<!--                                      pattern="$#,##0.00" />-->
+
+                </td>
+                <td>
+<!--                    <a class="Button" href="addToCart?workingItemId=${item.itemId}">Add to Cart</a>-->
+                    <a class="Button" th:href="@{/cart/insert(workingItemId=${item.itemId})}">Add to Cart</a>
+                </td>
+            </tr>
+        </c:forEach>
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:replace="common/IncludeBottom :: footer"></div>
+
+</body>
+</html>
