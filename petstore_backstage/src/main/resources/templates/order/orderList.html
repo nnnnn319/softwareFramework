@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org "
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+</div>
+<div id="Content">
+    <label th:if="${message != null}" th:text="${message}"></label>
+    <div id="Catalog">
+        <h2>My Orders</h2>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Total Price</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+
+            <tr th:each="order:${orderList}">
+                <td>
+                    <a th:href="@{/order/viewOrder(orderId=${order.orderId})}" th:text="${order.orderId}"></a>
+                </td>
+                <td th:text="${#dates.format(order.orderDate,'yyyy/MM/dd hh:mm:ss')}"></td>
+                <td th:text="'$'+${#numbers.formatDecimal(order.totalPrice,1,2)}"></td>
+                <td>
+                    <a class="Button"  href="/order/delete">Delete</a>
+                </td>
+                <td>
+                    <a class="Button"  href="/order/send">Send</a>
+                </td>
+             </tr>
+        </table>
+    </div>
+</div>
+
+</div>
+<div th:replace="common/bottom">
+</div>
+</body>
+</html>

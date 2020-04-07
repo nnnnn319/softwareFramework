@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org "
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+</div>
+<div id="Content">
+<!--    <div id="Welcome">-->
+<!--        <div id="WelcomeContent">-->
+<!--            Welcome &nbsp<label th:if="(${session.account != null}) and (${session.authenticated})" th:text="${account.firstName}"></label>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+    <div id="Main">
+        <div id="Sidebar">
+            <div id="SidebarContent">
+                <a href="/catalog/viewCategory?categoryId=FISH"><img src="../css/images/Commodity.gif" /></a>
+                <br/>
+
+                <br/>
+                <a href="/catalog/viewCategory?categoryId=DOGS"><img src="../css/images/user.gif" /></a>
+                <br />
+                <ul>
+                    <li>check Account Information</li>
+                </ul>
+                <a href="/order/viewOrderList"><img src="../css/images/order.gif" /></a>
+                <br />
+                <a href="/order/viewOrderList"><img id ="list" src="../css/images/order_list.gif" /></a>
+            </div>
+        </div>
+
+        <div id="MainImage">
+<!--            <div id="MainImageContent">-->
+<!--                <map name="estoremap">-->
+<!--                    <area alt="Birds" coords="72,2,280,250" href="/catalog/viewCategory?categoryId=BIRDS" shape="rect" />-->
+<!--                    <area alt="Fish" coords="2,180,72,250" href="/catalog/viewCategory?categoryId=FISH" shape="rect" />-->
+<!--                    <area alt="Dogs" coords="60,250,130,320" href="/catalog/viewCategory?categoryId=DOGS" shape="rect" />-->
+<!--                    <area alt="Reptiles" coords="140,270,210,340" href="/catalog/viewCategory?categoryId=REPTILES" shape="rect" />-->
+<!--                    <area alt="Cats" coords="225,240,295,310" href="/catalog/viewCategory?categoryId=CATS" shape="rect" />-->
+<!--                    <area alt="Birds" coords="280,180,350,250" href="/catalog/viewCategory?categoryId=BIRDS" shape="rect" />-->
+<!--                </map>-->
+<!--                <img height="355" src="../css/images/splash.gif" align="middle" usemap="#estoremap" width="350" />-->
+<!--            </div>-->
+        </div>
+        <div id="Separator">&nbsp;</div>
+    </div>
+</div>
+<div th:replace="common/bottom">
+</div>
+</body>
+</html>
