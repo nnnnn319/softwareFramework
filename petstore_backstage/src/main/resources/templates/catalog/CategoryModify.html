@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+</div>
+
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/viewCategoryList">Return to Category Catalog</a>
+    </div>
+
+    <div id="Catalog">
+        <span style="padding-left:30px;"><h2>Modify Category</h2></span>
+        <form action="/catalog/categoryModify_sure" method="post">
+            <table>
+                <tr>
+                    <td>Category description：</td>
+                    <td>
+                        <input type="text" name="description" th:value="${category.description}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>name：</td>
+                    <td>
+                        <input type="text" name="name" th:value="${category.name}"/>
+                    </td>
+                </tr>
+            </table>
+            <input th:type="submit" value="Sure" />
+            <a class="Button" href="/catalog/CategoryCancel">Cancel</a>
+        </form>
+    </div>
+</div>
+
+</div>
+<div th:replace="common/bottom">
+</div>
+</body>
+</html>
