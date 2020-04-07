@@ -10,4 +10,6 @@ public interface ItemMapper {
     int getInventoryQuantity(String itemId);
 
     Item getItem(String itemId);
+
+    List<Item> getItemListByProduct(String productId);
 }

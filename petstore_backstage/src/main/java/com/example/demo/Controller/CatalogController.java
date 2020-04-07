@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.domain.Account;
 import com.example.demo.domain.Category;
+import com.example.demo.domain.Item;
 import com.example.demo.domain.Product;
 import com.example.demo.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/catalog")
-@SessionAttributes({"categoryList"})
+@SessionAttributes({"categoryList","productList","category"})
 public class CatalogController {
     @Autowired
     private CatalogService catalogService;
@@ -69,7 +70,7 @@ public class CatalogController {
 
     //取消
     @GetMapping("CategoryCancel")
-    public String categoryAdd_cancel(Model model){
+    public String category_cancel(Model model){
         List<Category> categoryList = catalogService.getCategoryList();
         processCategoryDescription(categoryList);
         model.addAttribute("categoryList",categoryList);
@@ -78,7 +79,7 @@ public class CatalogController {
 
     //修改Category
     @GetMapping("/CategoryModify")
-    public String categoryAdd(Model model,String categoryId) {
+    public String categoryModify(Model model,String categoryId) {
         Category category = catalogService.getCategory(categoryId);
         model.addAttribute("category",category);
        return "catalog/CategoryModify";
@@ -88,10 +89,89 @@ public class CatalogController {
     @PostMapping("/categoryModify_sure")
     public String categoryModify_sure(Model model) {
         //成功修改
-        String message = "Add Successfully";
+        String message = "Modify Successfully";
         model.addAttribute("message",message);
         return "catalog/categoryList";
     }
+
+    //查看Product
+    @GetMapping("/viewCategory")
+    public String viewCategory(String categoryId, Model model) {
+        if (categoryId != null) {
+            List<Product> productList = catalogService.getProductListByCategory(categoryId);
+            Category category = catalogService.getCategory(categoryId);
+            processProductDescription(productList);
+            model.addAttribute("productList", productList);
+            model.addAttribute("category", category);
+        }
+        return "catalog/category";
+    }
+
+    //删除Product
+    @GetMapping("/productDelete")
+    public String productDelete(Model model) {
+
+        //成功删除
+        String message = "Delete Successfully";
+        model.addAttribute("message",message);
+        return "catalog/category";
+    }
+
+    //添加product
+    @GetMapping("/productAdd")
+    public String productAdd() {
+        return "catalog/newProduct";
+    }
+
+    //确定添加product
+    @PostMapping("/productAdd_sure")
+    public String productAdd_sure(Model model){
+        //成功添加
+        String message = "Add Successfully";
+        model.addAttribute("message",message);
+        return "catalog/category";
+    }
+
+    //取消
+    @GetMapping("ProductCancel")
+    public String product_cancel(Model model){
+        List<Category> categoryList = catalogService.getCategoryList();
+        processCategoryDescription(categoryList);
+        model.addAttribute("categoryList",categoryList);
+        return "catalog/category";
+    }
+
+    //修改Product
+    @GetMapping("/ProductModify")
+    public String productModify(Model model,String productId) {
+        Product product = catalogService.getProduct(productId);
+        processProductDescription(product);
+        model.addAttribute("product",product);
+        return "catalog/ProductModify";
+    }
+
+    //确认修改Product
+    @PostMapping("/productModify_sure")
+    public String productModify_sure(Model model) {
+        //成功修改
+        String message = "Modify Successfully";
+        model.addAttribute("message",message);
+        return "catalog/category";
+    }
+
+    //查看Item
+    @GetMapping("/viewProduct")
+    public String viewProduct(String productId, Model model) {
+        if (productId != null) {
+            List<Item> itemList = catalogService.getItemListByProduct(productId);
+            Product product = catalogService.getProduct(productId);
+            model.addAttribute("product", product);
+            model.addAttribute("itemList", itemList);
+        }
+        return "catalog/product";
+    }
+
+
 
 
 

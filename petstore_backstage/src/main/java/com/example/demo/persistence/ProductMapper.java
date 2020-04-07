@@ -10,4 +10,7 @@ import java.util.List;
 public interface ProductMapper {
 
     List<Product> getProductListByCategory(String categoryId);
+
+    Product getProduct(String productId);
+
 }

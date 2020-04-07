@@ -11,4 +11,13 @@
     FROM PRODUCT
     WHERE CATEGORY = #{value}
   </select>
+    <select id="getProduct" parameterType="string" resultType="Product">
+    SELECT
+      PRODUCTID,
+      NAME,
+      DESCN as description,
+      CATEGORY as categoryId
+    FROM PRODUCT
+    WHERE PRODUCTID = #{productId}
+  </select>
 </mapper>

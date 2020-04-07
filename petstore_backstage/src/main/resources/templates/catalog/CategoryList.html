@@ -10,12 +10,12 @@
 </div>
 
 <div id="Content">
-    <span style="padding-left:30px;"><label th:if="${message != null}" th:text="${message}"></label></span>
+    <label th:if="${message != null}" th:text="${message}"></label></span>
     <div id="BackLink">
         <a href="/catalog/view">Return to Main Menu</a>
     </div>
     <div id="Catalog">
-        <h1 id="word">Category Catalog</h1>
+        <span style="padding-left:30px;"><h1 id="word">Category Catalog</h1></span>
         <table>
             <tr>
                 <th>Category</th>
@@ -25,17 +25,16 @@
             </tr>
             <tr th:each="category:${categoryList}">
                 <td>
-<!--                    <a th:href="@{/catalog/viewCategory(categoryId=${product.categoryId})}">-->
+                    <a th:href="@{/catalog/viewCategory(categoryId=${category.categoryId})}">
                         <label><img th:src="${category.description}"></label>
-<!--&lt;!&ndash;                        <label th:text="${product.descriptionText}"></label>&ndash;&gt;-->
-<!--                    </a>-->
+                    </a>
                 </td>
                 <td>
                     <b>
-<!--                        <a th:href="@{/catalog/viewCategory(categoryId=${product.categoryId})}">-->
+                        <a th:href="@{/catalog/viewCategory(categoryId=${category.categoryId})}">
                             <font th:align="center" color="BLACK" th:text="${category.name}">
                             </font>
-<!--                        </a>-->
+                        </a>
                     </b>
                 </td>
                 <td><a class="Button"  href="/catalog/categoryDelete">Delete</a></td>
