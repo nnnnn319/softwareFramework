@@ -10,13 +10,14 @@
 <div th:replace="common/top">
 </div>
 <div id="Content">
+    <label th:if="${message != null}" th:text="${message}"></label>
     <div id="BackLink">
-        <a href="/catalog/view">Return to Main Menu</a>
+        <a href="/order/viewOrderList">Return to OrderList</a>
     </div>
     <div id="Catalog">
         <table>
             <tr>
-                <th align="center" colspan="2" th:text="'Order #'+${#dates.format(session.order.orderDate,'yyyy/MM/dd hh:mm:ss')}">
+                <th align="center" colspan="2" th:text="'Order '+${#dates.format(session.order.orderDate,'yyyy/MM/dd hh:mm:ss')}">
                 </th>
             </tr>
             <tr>
@@ -130,7 +131,8 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" th:text="'Status:'+${session.order.status}">
+                <td>Status:</td>
+                <td th:text="${session.order.status}">
                 </td>
             </tr>
             <tr>
@@ -159,15 +161,14 @@
                         </tr>
                         <tr>
                         <td th:text="'Total:$'+${#numbers.formatDecimal(session.order.totalPrice,1,2)}"></td>
-                        <td><a class="Button" href="/order/modify">Modify</a></td>\
-                            <td><a class="Button" href="/order/delete">Delete</a></td>
-                            <td><a class="Button" href="/order/send">Send</a></td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-
+        <a class="Button" href="/order/modify">Modify</a>
+        <a class="Button" href="/order/delete">Delete</a>
+        <a class="Button" href="/order/send">Send</a>
     </div>
 </div>
 <div th:replace="common/bottom">

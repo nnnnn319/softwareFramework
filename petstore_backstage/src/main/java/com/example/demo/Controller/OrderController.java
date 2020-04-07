@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -26,6 +27,11 @@ public class OrderController
     @GetMapping("/viewOrderList")
     public String viewOrderList(Model model, HttpSession session){
         Account account = (Account) session.getAttribute("account");
+        if(account == null) {
+            String message = "Please login first";
+            model.addAttribute("message",message);
+            return "account/signOnForm";
+        }
         List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
         model.addAttribute("orderList",orderList);
         return "order/orderList";
@@ -44,7 +50,7 @@ public class OrderController
     @GetMapping("/delete")
     public String delete(Model model) {
         String message = "Delete successfully";
-        model.addAttribute("message");
+        model.addAttribute("message",message);
         return "order/orderList";
     }
 
@@ -52,13 +58,35 @@ public class OrderController
     @GetMapping("/send")
     public String send(Model model) {
         String message = "Send successfully";
-        model.addAttribute("message");
+        model.addAttribute("message",message);
         return "order/orderList";
     }
 
     //修改
     @GetMapping("/modify")
     public String modify(Model model) {
+        Order order =(Order)model.getAttribute("order");
+
+        //如果订单状态为已发货,不能修改
+        if(!order.getStatus().equals("P")){
+            int orderId = order.getOrderId();
+            String message = "This order "+orderId+" has been shipped and cannot be modified";
+            model.addAttribute("message",message);
+            return "order/viewOrder";
+        }
         return "order/modifyOrder";
+    }
+
+    //确认修改
+    @PostMapping("/sure")
+    public String sure(Model model) {
+        //成功修改
+        return "order/viewOrder";
+    }
+
+    //取消修改
+    @GetMapping("/cancel")
+    public String cancel(Model model) {
+        return "order/viewOrder";
     }
 }
