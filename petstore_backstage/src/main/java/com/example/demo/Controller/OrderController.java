@@ -41,24 +41,36 @@ public class OrderController
     @GetMapping("/viewOrder")
     public String viewOrder(Model model, HttpSession session,int orderId) {
       Order order = orderService.getOrder(orderId);
-      model.addAttribute("order");
+      model.addAttribute("order", order);
       session.setAttribute("order",order);
       return "order/viewOrder";
     }
 
     //删除
     @GetMapping("/delete")
-    public String delete(Model model) {
+    public String delete(Model model, int orderId, HttpSession session) {
+        System.out.println(orderId);
+        orderService.deleteOrder(orderId);
         String message = "Delete successfully";
         model.addAttribute("message",message);
+        //重新查询
+        Account account = (Account) session.getAttribute("account");
+        List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
+        model.addAttribute("orderList",orderList);
         return "order/orderList";
     }
 
     //发货
     @GetMapping("/send")
-    public String send(Model model) {
+    public String send(Model model, int orderId, HttpSession session) {
+        System.out.println(orderId);
+        orderService.sendGood(orderId, "f");
         String message = "Send successfully";
         model.addAttribute("message",message);
+        //重新查询
+        Account account = (Account) session.getAttribute("account");
+        List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
+        model.addAttribute("orderList",orderList);
         return "order/orderList";
     }
 
@@ -79,7 +91,11 @@ public class OrderController
 
     //确认修改
     @PostMapping("/sure")
-    public String sure(Model model) {
+    public String sure(Order order,Model model) {
+        int  orderId = ((Order)model.getAttribute("order")).getOrderId();
+        order.setOrderId(orderId);
+//        System.out.println(order.getShipAddress1());
+        orderService.updateOrder(order);
         //成功修改
         return "order/viewOrder";
     }

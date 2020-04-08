@@ -23,4 +23,10 @@
     <select id="updateProduct">
         update PRODUCT set name =#{name}, descn = #{description} where productid = #{productId}
     </select>
+    <select id="addProduct">
+        insert into PRODUCT(productid, category, name, descn) values (#{productId}, #{category}, #{name}, #{descn})
+    </select>
+    <select id="deleteProduct" parameterType="java.lang.String">
+        delete from PRODUCT where productid = #{productId}
+    </select>
 </mapper>

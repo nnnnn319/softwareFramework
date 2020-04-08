@@ -116,8 +116,8 @@ public class CatalogController {
 
     //删除Product
     @GetMapping("/productDelete")
-    public String productDelete(Model model) {
-
+    public String productDelete(Model model, String productId) {
+        catalogService.deleteProduct(productId);
         //成功删除
         String message = "Delete Successfully";
         model.addAttribute("message",message);
@@ -132,7 +132,10 @@ public class CatalogController {
 
     //确定添加product
     @PostMapping("/productAdd_sure")
-    public String productAdd_sure(Model model){
+    public String productAdd_sure(Model model, HttpSession session, String productId, String name, String descriptionImage, String descriptionText){
+        String categoryId =((Category)session.getAttribute("category")).getCategoryId();
+        System.out.println("categoryId "+categoryId);
+        catalogService.addProduct(productId, categoryId, name, descriptionImage+descriptionText);
         //成功添加
         String message = "Add Successfully";
         model.addAttribute("message",message);

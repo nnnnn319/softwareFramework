@@ -41,5 +41,15 @@ public class OrderService {
         return order;
     }
 
+    public void sendGood(int orderId, String status) {
+        orderMapper.updateOrderStatus(orderId, status);
+    }
 
+    public void deleteOrder(int orderId){
+        orderMapper.deleteOrder(orderId);
+        orderMapper.deleteOrderStatus(orderId);
+    }
+    public void updateOrder(Order order){
+        orderMapper.updateOrder(order);
+    }
 }

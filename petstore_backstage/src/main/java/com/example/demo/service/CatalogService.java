@@ -46,4 +46,10 @@ public class CatalogService {
     public void updateProduct(String  productId, String name, String description){
         productMapper.updateProduct(productId, name, description);
     }
+    public void addProduct(String productId, String category, String name, String descn) {
+        productMapper.addProduct(productId, category, name, descn);
+    }
+    public void  deleteProduct(String productId){
+        productMapper.deleteProduct(productId);
+    }
 }

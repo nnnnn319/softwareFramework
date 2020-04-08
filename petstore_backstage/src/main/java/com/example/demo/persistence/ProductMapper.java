@@ -14,4 +14,8 @@ public interface ProductMapper {
     Product getProduct(String productId);
 
     void updateProduct(String  productId, String name, String description);
+
+    void addProduct(String productId, String category, String name, String descn);
+
+    void deleteProduct(String productId);
 }
