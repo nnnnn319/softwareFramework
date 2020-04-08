@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/catalog")
-@SessionAttributes({"categoryList","productList","category"})
+@SessionAttributes({"categoryList","productList","category", "categoryId"})
 public class CatalogController {
     @Autowired
     private CatalogService catalogService;
@@ -82,15 +82,22 @@ public class CatalogController {
     public String categoryModify(Model model,String categoryId) {
         Category category = catalogService.getCategory(categoryId);
         model.addAttribute("category",category);
+        model.addAttribute("categoryId", categoryId);
        return "catalog/CategoryModify";
     }
 
     //确认修改Category
     @PostMapping("/categoryModify_sure")
-    public String categoryModify_sure(Model model) {
+    public String categoryModify_sure(Model model, String name, String description, HttpSession session) {
+       String categoryId = (String) session.getAttribute("categoryId");
+        catalogService.updateCategoryName(name, description, categoryId);
         //成功修改
         String message = "Modify Successfully";
         model.addAttribute("message",message);
+        //重新读取列表
+        List<Category> categoryList = catalogService.getCategoryList();
+        processCategoryDescription(categoryList);
+        model.addAttribute("categoryList",categoryList);
         return "catalog/categoryList";
     }
 
@@ -152,10 +159,13 @@ public class CatalogController {
 
     //确认修改Product
     @PostMapping("/productModify_sure")
-    public String productModify_sure(Model model) {
+    public String productModify_sure(Model model, String descriptionImage, String productId, String name, String descriptionText) {
+       catalogService.updateProduct(productId, name, descriptionImage+descriptionText);
         //成功修改
         String message = "Modify Successfully";
         model.addAttribute("message",message);
+        //重新查询
+
         return "catalog/category";
     }
 

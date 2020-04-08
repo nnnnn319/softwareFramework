@@ -17,4 +17,7 @@
     FROM CATEGORY
     WHERE CATID = #{categoryId}
     </select>
+    <select id="updateCategoryName">
+        update CATEGORY set name = #{newName}, descn=#{newDesn} where catid = #{categoryId}
+    </select>
 </mapper>
