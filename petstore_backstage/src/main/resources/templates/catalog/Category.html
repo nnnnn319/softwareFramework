@@ -31,7 +31,7 @@
                 <td><a th:href="@{/catalog/viewProduct(productId=${product.productId})}" th:text="${product.productId}"></a></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.descriptionText}"></td>
-                <td><a class="Button"  href="/catalog/productDelete">Delete</a></td>
+                <td><a class="Button"  th:href="@{/catalog/productDelete(productId=${product.productId})}">Delete</a></td>
                 <td><a class="Button"  th:href="@{/catalog/ProductModify(productId=${product.productId})}">Modify</a></td>
             </tr>
         </table>

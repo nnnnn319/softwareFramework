@@ -68,5 +68,20 @@
     AND ORDERS.ORDERID = ORDERSTATUS.ORDERID
     ORDER BY ORDERDATE
 </select>
-
+<select id="updateOrderStatus">
+    update ORDERSTATUS set status=#{status} where orderid=#{orderId}
+</select>
+    <select id="deleteOrder">
+        delete from ORDERS where orderid=#{orderId}
+    </select>
+    <select id="deleteOrderStatus">
+        delete from ORDERSTATUS where orderid=#{orderId}
+    </select>
+    <select id="updateOrder" parameterType="Order">
+        update ORDERS set billaddr1=#{billAddress1}, billaddr2=#{billAddress2},
+         billcity=#{billCity}, billstate=#{billState}, billzip=#{billZip}, billcountry=#{billCountry},
+         shipaddr1=#{shipAddress1}, shipaddr2=#{shipAddress2}, shipcity=#{shipCity},
+        shipstate=#{shipState}, shipzip=#{shipZip}, shipcountry=#{shipCountry} where
+        orderid=#{orderId}
+    </select>
 </mapper>

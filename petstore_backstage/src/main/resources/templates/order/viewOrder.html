@@ -167,8 +167,8 @@
             </tr>
         </table>
         <a class="Button" href="/order/modify">Modify</a>
-        <a class="Button" href="/order/delete">Delete</a>
-        <a class="Button" href="/order/send">Send</a>
+        <a class="Button" th:href="@{/order/delete(orderId=${session.order.orderId})}">Delete</a>
+        <a class="Button" th:href="@{/order/send(orderId=${session.order.orderId})}">Send</a>
     </div>
 </div>
 <div th:replace="common/bottom">
