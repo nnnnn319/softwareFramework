@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -74,5 +75,64 @@ public class AccountController {
         }
     }
 
-}
+    //登陆页面
+    @GetMapping("/viewMyAccount")
+    public String viewMyAccount(Model model) {
+        Account account = (Account)model.getAttribute("account");
+        if(account == null) {
+            String message = "Please login first";
+            model.addAttribute("message",message);
+            return "account/signOnForm";
+        }
+        return "account/MyAccount";
+    }
+
+    //退出登录
+    @GetMapping("/viewSignOut")
+    public String viewSignOut(Model model, HttpSession session) {
+        model.addAttribute("account", null);
+        model.addAttribute("authenticated",false);
+        model.addAttribute("username",null);
+        session.setAttribute("account", null);
+        session.setAttribute("authenticated",false);
+        session.setAttribute("username",null);
+        return "catalog/main";
+    }
+
+    //重置密码界面
+    @GetMapping("/resetPassword")
+    public String resetPassword() {
+        return "account/resetPassword";
+    }
+
+    //确认重置密码
+    @PostMapping("/resetPassword_sure")
+    public String resetPassword_sure(Model model) {
+        String message = "Reset Successfully";
+        model.addAttribute("message",message);
+        return "account/myAccount";
+    }
+
+    //修改信息界面
+    @GetMapping("/AccountModify")
+    public String accountModify() {
+        return "account/modifyAccount";
+    }
+
+    //确认修改信息
+    @PostMapping("/accountModify_sure")
+    public String accountModify_sure(Model model) {
+        String message = "Modify Successfully";
+        model.addAttribute("message",message);
+        return "account/myAccount";
+    }
+
+    //取消
+    @GetMapping("/cancel")
+    public String cancel(){
+        return "account/myAccount";
+    }
+
+
+    }
 

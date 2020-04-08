@@ -12,16 +12,13 @@
 
         <div id="Logo">
             <div id="LogoContent">
-                <a href="/catalog/view"><img src="../css/images/logo-topbar.gif" /></a>
+                <a href="/catalog/view"><img src="../css/images/top.gif" /></a>
             </div>
         </div>
         <div id="Menu">
             <div id="MenuContent">
 
-<!--                <a href="/cart/viewCart">-->
-<!--                    <img align="middle" name="img_cart" src="../css/images/cart.gif" />-->
-<!--                </a>-->
-                <img align="middle" src="../css/images/separator.gif" />
+
                 <a th:if="${session.account == null}" href="/account/viewSignOnForm">
                     Sign In
                 </a>
@@ -31,54 +28,41 @@
                 <a th:if="(${session.account != null}) and (${session.authenticated})" href="/account/viewSignOut">
                     Sign Out
                     <img align="middle" src="../css/images/separator.gif" />
-                    <a href="/account/viewEditAccountForm">
+                    <a href="/account/viewMyAccount">
                         My Account
                     </a>
                 </a>
-                <!--                            <img align="middle" src="../css/images/separator.gif" />-->
-                <!--                            <a href="/account/viewEditAccountForm">-->
-                <!--                                My Account-->
-                <!--                            </a>-->
-                <img align="middle" src="../css/images/separator.gif" />
-                <a href="/account/viewHelp">?</a>
             </div>
         </div>
 
 
         <div id="Search">
             <div id="SearchContent">
-                <form action="/catalog/searchProducts" method="post">
-                    <input type="text" name="keyword" size="14" />
-                    <div id="context1" style="background-color:white; border: 1px solid red;width:128px;position: absolute;top: 133px;left:944px;display:none" >
-                    </div>
-                    <input type="submit" name="searchProducts" value="Search" />
-                </form>
+<!--                <form action="/catalog/searchProducts" method="post">-->
+<!--                    <input type="text" name="keyword" size="14" />-->
+<!--                    <div id="context1" style="background-color:white; border: 1px solid red;width:128px;position: absolute;top: 133px;left:944px;display:none" >-->
+<!--                    </div>-->
+<!--                    <input type="submit" name="searchProducts" value="Search" />-->
+<!--                </form>-->
             </div>
         </div>
 
         <div id="QuickLinks">
-            <a href="/catalog/viewCategory?categoryId=FISH">
-                <img src="../css/images/sm_fish.gif" />
+            <a href="/catalog/viewCategoryList">
+                <img src="../css/images/commodify_icon..gif" />
             </a>
             <img src="../css/images/separator.gif" />
-            <a href="/catalog/viewCategory?categoryId=DOGS">
-                <img src="../css/images/sm_dogs.gif" />
-            </a>
-            <img src="../css/images/separator.gif" />
-            <a href="/catalog/viewCategory?categoryId=REPTILES">
-                <img src="../css/images/sm_reptiles.gif" />
-            </a>
-            <img src="../css/images/separator.gif" />
-            <a href="/catalog/viewCategory?categoryId=CATS">
-                <img src="../css/images/sm_cats.gif" />
-            </a>
-            <img src="../css/images/separator.gif" />
-            <a href="/catalog/viewCategory?categoryId=BIRDS">
+            <a href="/account/viewMyAccount">
                 <img src="../css/images/user_icon.gif" />
+            </a>
+            <img src="../css/images/separator.gif" />
+            <a href="/order/viewOrderList">
+                <img src="../css/images/order_icon.gif" />
             </a>
         </div>
 
     </div>
 </header>
+
 </body>
 </html>

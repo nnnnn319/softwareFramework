@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+</div>
+
+<div id="Content">
+    <div id="BackLink">
+        <a th:href="@{/catalog/viewProduct(productId=${product.productId})}" th:text="'Return to Item Catalog of '+${product.name}"></a>
+    </div>
+
+    <div id="Catalog">
+        <span style="padding-left:30px;"><h2 th:text="'Modify Item of '+${item.itemId}"></h2></span>
+        <form action="/catalog/itemModify_sure" method="post">
+            <table>
+                <tr>
+                    <td>Item ID：</td>
+                    <td>
+                        <input type="text" name="itemId" th:value="${item.itemId}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description：</td>
+                    <td>
+                        <input type="text" name="attribute1" th:value="${item.attribute1}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>List Price：</td>
+                    <td>
+                        <input type="text" name="listPrice" th:value="${item.listPrice}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quantity：</td>
+                    <td>
+                        <input type="text" name="quantity" th:value="${item.quantity}"/>
+                    </td>
+                </tr>
+
+            </table>
+            <input th:type="submit" value="Sure" />
+            <a class="Button" href="/catalog/ItemCancel">Cancel</a>
+        </form>
+    </div>
+</div>
+
+</div>
+<div th:replace="common/bottom">
+</div>
+</body>
+</html>

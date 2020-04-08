@@ -11,7 +11,9 @@
 </div>
 <div id="Content">
     <label th:if="${message!=null}" th:text="${message}"></label>
-
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
     <div id="Catalog">
         <form action="/account/login" method="post" name="loginForm" onsubmit="ident()">
 
@@ -107,8 +109,6 @@
             </script>
 
         </form>
-        Need a user name and password?
-        <a href="/account/viewNewAccountForm">Register Now!</a>
     </div>
 </div>
 <div th:replace="common/bottom">

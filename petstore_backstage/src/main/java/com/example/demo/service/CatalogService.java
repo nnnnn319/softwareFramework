@@ -40,6 +40,10 @@ public class CatalogService {
         return itemMapper.getItemListByProduct(productId);
     }
 
+    public Item getItem(String itemId) {
+        return itemMapper.getItem(itemId);
+    }
+
     public void updateCategoryName(String newName, String newDesn, String categoryId){
         categoryMapper.updateCategoryName(newName, newDesn,categoryId);
     }

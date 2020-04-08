@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+</div>
+<div id="Content">
+    <label th:if="${message!=null}" th:text="${message}"></label>
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+    <div id="Catalog">
+        <span style="padding-left:30px;"><h3>Account Information</h3></span>
+            <table>
+                <tr>
+                    <td>Account ID:</td>
+<!--                    <td th:text="${account.username}"></td>-->
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Shipping Address:</td>
+<!--                    发货地址-->
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Card Type:</td>
+<!--                    收款卡-->
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Card Number:</td>
+                    <!--                    收款卡号-->
+                    <td></td>
+                </tr>
+            </table>
+        <br/>
+        <a class="Button"  href="/account/resetPassword">Reset Password</a>
+        <a class="Button"  href="/account/AccountModify">Modify Account</a><br/><br/>
+        <a href="/order/viewOrderList">My Orders</a>
+    </div>
+
+</div>
+<div th:replace="common/bottom">
+</div>
+</body>
+</html>

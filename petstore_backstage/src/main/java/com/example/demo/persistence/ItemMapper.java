@@ -12,4 +12,5 @@ public interface ItemMapper {
     Item getItem(String itemId);
 
     List<Item> getItemListByProduct(String productId);
+
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+</div>
+<div id="BackLink">
+    <a th:href="@{/catalog/viewCategory(categoryId=${product.categoryId})}"><span th:text="'Return to Pcroduct Catalog of '+${product.categoryId}"><span></a>
+</div>
+<div id="Content">
+    <label th:if="${message != null}" th:text="${message}"></label>
+    <div id="Catalog">
+        <span style="padding-left:20px;"><h1 th:text="'the Item Catalog of '+${product.name}"></h1></span>
+
+        <table>
+            <tr>
+                <th>Item ID</th>
+                <th>Description</th>
+                <th>List Price</th>
+                <th>Quantity</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="item:${itemList}">
+                <td th:text="${item.itemId}">
+                </td>
+                <td th:text="${item.attribute1}">
+                </td>
+                <td th:text="'$'+${#numbers.formatDecimal(item.listPrice,1,2)}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td><a class="Button"  href="/catalog/itemDelete">Delete</a></td>
+                <td><a class="Button"  th:href="@{/catalog/ItemModify(itemId=${item.itemId})}">Modify</a></td>
+            </tr>
+        </table>
+        <a class="Button"  href="/catalog/itemAdd">Add</a>
+    </div>
+</div>
+<div th:replace="common/bottom">
+</div>
+</body>
+</html>

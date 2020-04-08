@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/catalog")
-@SessionAttributes({"categoryList","productList","category", "categoryId"})
+@SessionAttributes({"categoryList","productList","category", "categoryId","itemList","product"})
 public class CatalogController {
     @Autowired
     private CatalogService catalogService;
@@ -175,15 +175,60 @@ public class CatalogController {
         if (productId != null) {
             List<Item> itemList = catalogService.getItemListByProduct(productId);
             Product product = catalogService.getProduct(productId);
+            processProductDescription(product);
             model.addAttribute("product", product);
             model.addAttribute("itemList", itemList);
         }
         return "catalog/product";
     }
 
+    //删除Item
+    @GetMapping("/itemDelete")
+    public String itemDelete(Model model) {
 
+        //成功删除
+        String message = "Delete Successfully";
+        model.addAttribute("message",message);
+        return "catalog/product";
+    }
 
+    //添加item
+    @GetMapping("/itemAdd")
+    public String itemAdd() {
+        return "catalog/newItem";
+    }
 
+    //确定添加item
+    @PostMapping("/itemAdd_sure")
+    public String itemAdd_sure(Model model){
+        //成功添加
+        String message = "Add Successfully";
+        model.addAttribute("message",message);
+        return "catalog/product";
+    }
+
+    //取消
+    @GetMapping("ItemCancel")
+    public String item_cancel(Model model){
+        return "catalog/product";
+    }
+
+    //修改Item
+    @GetMapping("/ItemModify")
+    public String itemModify(Model model,String itemId) {
+        Item item = catalogService.getItem(itemId);
+        model.addAttribute("item",item);
+        return "catalog/ItemModify";
+    }
+
+    //确认修改Item
+    @PostMapping("/itemModify_sure")
+    public String itemModify_sure(Model model) {
+        //成功修改
+        String message = "Modify Successfully";
+        model.addAttribute("message",message);
+        return "catalog/product";
+    }
 
     private void processProductDescription(Product product){
         String [] temp = product.getDescription().split("\"");
