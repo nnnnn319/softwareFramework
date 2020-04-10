@@ -37,7 +37,7 @@
                         </a>
                     </b>
                 </td>
-                <td><a class="Button"  href="/catalog/categoryDelete">Delete</a></td>
+                <td><a class="Button"  th:href="@{/catalog/categoryDelete(categoryId=${category.categoryId})}">Delete</a></td>
                 <td><a class="Button"  th:href="@{/catalog/CategoryModify(categoryId=${category.categoryId})}">Modify</a></td>
             </tr>
         </table>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+<!--    <meta charset="UTF-8">-->
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
     <title>Title</title>
     <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
 </head>
@@ -16,7 +17,7 @@
 
     <div id="Catalog">
         <span style="padding-left:20px;"> <h2>New Category</h2></span>
-        <form action="/catalog/categoryAdd_sure" method="post">
+        <form action="/catalog/fileAdd" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td>Category description：</td>
@@ -28,6 +29,12 @@
                     <td>name：</td>
                     <td>
                         <input type="text" name="name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Image: </td>
+                    <td>
+                        <input type="file" name="file">
                     </td>
                 </tr>
             </table>

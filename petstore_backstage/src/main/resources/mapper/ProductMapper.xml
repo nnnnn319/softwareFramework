@@ -29,4 +29,7 @@
     <select id="deleteProduct" parameterType="java.lang.String">
         delete from PRODUCT where productid = #{productId}
     </select>
+    <select id="deleteProductByCategory">
+        delete from PRODUCT where category=#{categoryId}
+    </select>
 </mapper>

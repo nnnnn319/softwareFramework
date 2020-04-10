@@ -17,4 +17,13 @@ public class AccountService {
         account.setPassword(password);
         return accountMapper.getAccountByUsernameAndPassword(account);
     }
+
+    public boolean Login(String username, String password){
+        String password_real = accountMapper.getPasswordByUsername(username);
+        if (password.equals(password_real)){
+            return true;
+        }
+        else
+            return false;
+    }
 }

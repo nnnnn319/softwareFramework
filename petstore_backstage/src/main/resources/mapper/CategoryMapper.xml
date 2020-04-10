@@ -20,4 +20,10 @@
     <select id="updateCategoryName">
         update CATEGORY set name = #{newName}, descn=#{newDesn} where catid = #{categoryId}
     </select>
+    <select id="deleteCategory">
+        delete from CATEGORY where catid = #{categoryId}
+    </select>
+    <select id="addCategory">
+        insert into CATEGORY values (#{catId}, #{name}, #{description})
+    </select>
 </mapper>

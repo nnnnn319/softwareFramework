@@ -15,7 +15,7 @@
     </div>
 
     <div id="Catalog">
-        <span style="padding-left:20px;"> <h2 th:text="'New Item of '+${product.name}"></h2></span>
+        <span style="padding-left:20px;"> <h2 th:text="'New Item of '+${session.product.name}"></h2></span>
         <form action="/catalog/itemAdd_sure" method="post">
             <table>
                 <tr>

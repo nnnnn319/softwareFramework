@@ -9,6 +9,7 @@ import com.example.demo.persistence.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -55,5 +56,35 @@ public class CatalogService {
     }
     public void  deleteProduct(String productId){
         productMapper.deleteProduct(productId);
+    }
+
+    public void deleteCategory(String catid) {
+        productMapper.deleteProductByCategory(catid);
+        categoryMapper.deleteCategory(catid);
+    }
+
+    public void addCategory(String description, String name, String catId) {
+        categoryMapper.addCategory(description, name, catId);
+    }
+
+    public int getQuantity(String itemId) {
+        return itemMapper.getInventoryQuantity(itemId);
+    }
+
+    public void updateItem(String itemId, String attribute1, BigDecimal listPrice){
+        itemMapper.updateItem(itemId, attribute1, listPrice);
+    }
+
+    public void updateQuantity(String itemId, int quantity) {
+        itemMapper.updateQuantity(itemId, quantity);
+    }
+
+    public void deleteItem(String itemId) {
+        itemMapper.deleteItem(itemId);
+    }
+
+    public void addItem(Item item) {
+        itemMapper.insertItem(item);
+        itemMapper.insertItemQuantity(item);
     }
 }

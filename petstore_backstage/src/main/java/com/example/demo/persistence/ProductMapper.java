@@ -18,4 +18,6 @@ public interface ProductMapper {
     void addProduct(String productId, String category, String name, String descn);
 
     void deleteProduct(String productId);
+
+    void deleteProductByCategory(String categoryId);
 }

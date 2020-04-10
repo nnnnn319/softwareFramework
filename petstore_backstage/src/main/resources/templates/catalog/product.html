@@ -32,7 +32,7 @@
                 </td>
                 <td th:text="'$'+${#numbers.formatDecimal(item.listPrice,1,2)}"></td>
                 <td th:text="${item.quantity}"></td>
-                <td><a class="Button"  href="/catalog/itemDelete">Delete</a></td>
+                <td><a class="Button"  th:href="@{/catalog/itemDelete(itemId=${item.itemId})}">Delete</a></td>
                 <td><a class="Button"  th:href="@{/catalog/ItemModify(itemId=${item.itemId})}">Modify</a></td>
             </tr>
         </table>
